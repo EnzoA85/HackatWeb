@@ -15,4 +15,12 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
         ]);
     }
+
+    #[Route('/HackatAgence', name: 'app_agence')]
+    public function HackatAgence(): Response
+    {
+        return $this->render('home/hackatagence.html.twig', [
+            'controller_name' => 'HomeController',
+        ]);
+    }
 }
