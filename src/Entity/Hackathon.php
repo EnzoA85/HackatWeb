@@ -14,16 +14,16 @@ class Hackathon
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(name : "dateDebut", type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateDebut = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    #[ORM\Column(name : "heureDebut", type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heureDebut = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(name : "dateFin", type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateFin = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
+    #[ORM\Column(name : "heureFin", type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heureFin = null;
 
     #[ORM\Column(length: 255, nullable: true)]
@@ -35,7 +35,7 @@ class Hackathon
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $ville = null;
 
-    #[ORM\Column(length: 5, nullable: true)]
+    #[ORM\Column(name : "codePostal", length: 5, nullable: true)]
     private ?string $codePostal = null;
 
     #[ORM\Column(length: 255)]
@@ -47,10 +47,10 @@ class Hackathon
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(name : "dateLimite", type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateLimite = null;
 
-    #[ORM\Column(nullable: true)]
+    #[ORM\Column(name : "nbPlaces", nullable: true)]
     private ?int $nbPlace = null;
 
     public function getId(): ?int
