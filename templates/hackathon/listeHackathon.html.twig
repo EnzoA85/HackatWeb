@@ -12,8 +12,8 @@
 
 {# chaque ligne du table va faire une card Bootstrap #}
 {% for hackathon in lesHackathons %}
-<div class="col d-flex"> {# d-flex : les cards ont toutes la même taille #}
-<div class="card" style="width: 18rem; margin-bottom : 10px;"> {# Définit les cards #}
+<div class="col col-lg-3 col-sm-12 col-12 d-flex"> {# d-flex : les cards ont toutes la même taille #}
+  <div class="card" style="width:100%;margin-bottom : 10px;"> {# Définit les cards #}
 
 
     {# Affiche l'image si le hackathon en a une #}
@@ -40,7 +40,7 @@
 
 
     </div>
-</div>
+  </div>
 </div>
 {% endfor %}
 </div>
