@@ -2,11 +2,29 @@
 
 {% block body %}
 <h1 class="titre">Hackat'Agence</h1>
+<img class="imglogoHackathon" src="{{asset('images/hackathon.png')}}" width="40%" height="40%">
 <style>
+html, body{
+    margin:0;
+    min-height:100%;
+    background-image: url("images/backgroundIndex.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
 .titre{
     text-align:center;
     font-weight:bold;
-    color:black;
+    color:white;
+    font-size:50px;
+    margin-bottom:50px;
+}
+.imglogoHackathon{
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius : 10px;
+    border:solid white 2px;
 }
 </style>
 {% endblock %}

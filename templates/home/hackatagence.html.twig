@@ -1,63 +1,108 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1 class="titre">L'Agence Hackat'Agence</h1><br/><br/><br/><br/>
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-6">
-    <img class="imgExempleHackathon" src="{{asset('images/imgExempleHackathon.jpg')}}" width="100%" height="600">
-    </div>
-    <div class="col-sm-5 sidenav" style="margin-left:50px;">
-        <div class="defHackathon">
-            <p>
-                L'hackathon est un processus créatif utilisé dans le domaine de l'innovation numérique. Durant
-                généralement un week-end, des développeurs volontaires se réunissent pour faire de la
-                programmation informatique en mode collaboratif sur un thème défini. L’engouement pour ce type
-                de manifestation témoigne d’une volonté de développer toujours davantage le numérique au service
-                de la société.
-            </p>
-        </div><br/><br/>
-        <div class="deroulementHackathon">
-            <p>
-                Même s’ils peuvent porter sur des thèmes variés, les hackathons se déroulent toujours selon un même schéma :<br/>
-                • L’accueil des participants et la présentation constituent la première phase du hackathon ;<br/>
-                • Les équipes travaillent ensuite sur le développement de leur projet : remue-méninges,
-                maquettage, prototypage, etc. Lors de ces phases de travail, les équipes sont
-                accompagnées par des mentors (coachs) de différents domaines (développement,graphisme, communication, etc.) ;<br/>
-                • À l’issue de ce travail intensif, chaque équipe présente son prototype au jury ;<br/>
-                • Enfin, la délibération du jury puis la proclamation des résultats et la remise des récompenses constituent la dernière phase du hackathon
-            </p>
+<div class="hackatagence">
+    <br/><h1 class="titre">L'Agence Hackat'Agence</h1><br/><br/><br/>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-6">
+                <br/><br/><img class="imgExempleHackathon" src="{{asset('images/hackatagence.jpg')}}" width="100%" height="500">
+                </div>
+                <div class="col-sm-5 sidenav" style="margin-left:50px;">
+                <div class="defHackathon">
+                    <h3 class="titreDefHackathon">Qu'est-ce-qu'un Hackathons ?</h3>
+                    <p class="paraDefHackathon">
+                        L'hackathon est un processus créatif utilisé dans le domaine de l'innovation numérique. Durant
+                        généralement un week-end, des développeurs volontaires se réunissent pour faire de la
+                        programmation informatique en mode collaboratif sur un thème défini. L’engouement pour ce type
+                        de manifestation témoigne d’une volonté de développer toujours davantage le numérique au service
+                        de la société.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-  </div>
+    <div class="espace">
+    </div>
+    <div class="deroulementHackathon">
+        <h3 class="titreDeroulementHackathon">Déroulement d'un Hackathons</h3>
+        <p class="paraDeroulementHackathon">
+            Même s’ils peuvent porter sur des thèmes variés, les hackathons se déroulent toujours selon un même schéma :<br/>
+            • L’accueil des participants et la présentation constituent la première phase du hackathon ;<br/>
+            • Les équipes travaillent ensuite sur le développement de leur projet : remue-méninges,
+            maquettage, prototypage, etc. Lors de ces phases de travail, les équipes sont
+            accompagnées par des mentors (coachs) de différents domaines (développement,graphisme, communication, etc.) ;<br/>
+            • À l’issue de ce travail intensif, chaque équipe présente son prototype au jury ;<br/>
+            • Enfin, la délibération du jury puis la proclamation des résultats et la remise des récompenses constituent la dernière phase du hackathon
+        </p>
+    </div><br/>
 </div>
 
 <style>
+html, body{
+    margin:0;
+    min-height:100%;
+    background-image: url("images/imgExempleHackathon.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.hackatagence{
+    backdrop-filter:blur(5px);
+    min-height:100%;
+    margin-top:-20px;
+}
+.espace{
+    margin-top:170px;
+}
 .titre{
     text-align:center;
     font-weight:bold;
     color:black;
     text-decoration:underline;
+    font-size:50px;
+    text-shadow: 1px 1px 2px white;
+
 }
 .imgExempleHackathon{
-    border:solid white 3px;
+    border:solid black 3px;
     border-radius : 300px;
 }
 .defHackathon{
+    margin-top:170px;
+    text-align:center;
+}
+.titreDefHackathon{
+    font-weight:bold;
+    color:black;
+}
+.titreDeroulementHackathon{
+    font-weight:bold;
+    color:black;
+}
+.paraDefHackathon{
     font-size:20px;
     text-align:justify;
-    background:#EBEBED;
     padding:10px;
+    color:#F7F7F7;
     border:solid black 3px;
     border-radius : 10px;
+    text-shadow: 1px 1px 2px black;
 }
 .deroulementHackathon{
+    text-align:center;
+    margin-top:50px;
+}
+.paraDeroulementHackathon{
     font-size:20px;
     text-align:justify;
-    background:#EBEBED;
     padding:10px;
+    color:#F7F7F7;
     border:solid black 3px;
     border-radius : 10px;
+    margin:50px;
+    text-shadow: 1px 1px 2px black;
+    margin-top: -0px;
 }
 </style>
 {% endblock %}
