@@ -210,7 +210,5 @@ class Hackathon
     public function setNbPlaces(?int $nbPlaces): self
     {
         $this->nbPlaces = $nbPlaces;
-
-        return $this;
     }
 }
