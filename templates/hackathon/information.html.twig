@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ leHackaton.theme }}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper"> 
+
+{# Theme (Titre) #}
+<p><h1>{{ leHackaton.theme }}</h1></p>
+
+{# Image #}
+{% if leHackaton.image != null %}<p><img src={{ leHackaton.image }} class="img-thumbnail" alt="Responsive image"> </p>{% endif %}
+
+{# Description #}
+<p>Description: {{ leHackaton.description|default('Pas de description') }}</p>
+
+{# Nombre de Places #}
+<p>Nombre de places: {{ leHackaton.nbPlaces }}</p>
+
+{# Lieu (Lieu + Rue + Ville + CP) #}
+<p>Lieu: {{ leHackaton.lieu }}, {{ leHackaton.rue }}, {{ leHackaton.ville }} ({{ leHackaton.codePostal }})</p>
+
+{# Début (Date + heure si présente) #}
+<p>Début: {{ leHackaton.dateDebut|date("d/m/y") }} {% if leHackaton.heureDebut != null %} à {{ leHackaton.heureDebut|date("H:i:s") }} {% endif %} </p>
+
+{# Fin (Date + heure si présente) #}
+<p>Fin: {{ leHackaton.dateFin|date("d/m/y") }} {% if leHackaton.heureFin != null %} à {{ leHackaton.heureFin|date("H:i:s") }} {% endif %} </p>
+
+{# Date limite d'inscription (si présente) #}
+{% if leHackaton.dateLimite != null %} <p>Date limite d'inscription: {{ leHackaton.dateLimite|date("d/m/y") }} </p> {% endif %}
+
+</div>
+{% endblock %}

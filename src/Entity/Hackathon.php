@@ -51,7 +51,7 @@ class Hackathon
     private ?\DateTimeInterface $dateLimite = null;
 
     #[ORM\Column(name : "nbPlaces", nullable: true)]
-    private ?int $nbPlace = null;
+    private ?int $nbPlaces = null;
 
     public function getId(): ?int
     {
@@ -202,14 +202,14 @@ class Hackathon
         return $this;
     }
 
-    public function getNbPlace(): ?int
+    public function getNbPlaces(): ?int
     {
-        return $this->nbPlace;
+        return $this->nbPlaces;
     }
 
-    public function setNbPlace(?int $nbPlace): self
+    public function setNbPlaces(?int $nbPlaces): self
     {
-        $this->nbPlace = $nbPlace;
+        $this->nbPlaces = $nbPlaces;
 
         return $this;
     }
