@@ -2,15 +2,18 @@
 
 
 {% block body %}
+<div class="listeHackathons">
+
 <div class="container-fluid">
 
 {# Titre pour la page #}
-<h1>Liste des {{lesHackathons|length}} Hackathons</h1>
+<h1 class="titre">Liste des {{lesHackathons|length}} Hackathons</h1>
 
 
 <div class="row">
 
 {# chaque ligne du table va faire une card Bootstrap #}
+
 {% for hackathon in lesHackathons %}
 <div class="col d-flex"> {# d-flex : les cards ont toutes la même taille #}
 <div class="card" style="width: 18rem; margin-bottom : 10px;"> {# Définit les cards #}
@@ -45,6 +48,25 @@
 {% endfor %}
 </div>
 </div>
+
+</div>
+<style>
+html, body{
+    min-height:100%;
+    background-image: url("images/imgExempleHackathon.jpg");
+    background-repeat:no-repeat;
+    margin:0;
+    background-size:cover;
+}
+.titre{
+    text-align:center;
+    font-weight:bold;
+    color:black;
+    text-decoration:underline;
+    font-size:50px;
+    text-shadow: 1px 1px 2px white;
+}
+</style>
 {% endblock %}
 
 
