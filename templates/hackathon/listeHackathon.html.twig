@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class="container-fluid">
+
+{# Titre pour la page #}
+<h1>Liste des {{lesHackathons|length}} Hackathons</h1>
+
+
+<div class="row">
+
+{# chaque ligne du table va faire une card Bootstrap #}
+{% for hackathon in lesHackathons %}
+<div class="col d-flex"> {# d-flex : les cards ont toutes la même taille #}
+<div class="card" style="width: 18rem; margin-bottom : 10px;"> {# Définit les cards #}
+
+
+    {# Affiche l'image si le hackathon en a une #}
+    {% if hackathon.image != null %}
+        <img class="card-img-top" src="{{hackathon.image}}" style="height: 5vw; object-fit: cover;">
+    {% endif %}
+
+
+    {# body contenu de la card #}
+    <div class="card-body">
+        <h5 class="card-title">{{hackathon.theme}}</h5>
+        <p>{{hackathon.ville}}</p>
+        <p>{{hackathon.dateDebut|date("m/d/Y")}} - {{hackathon.dateFin|date("m/d/Y")}}</p>
+
+
+        {# Affiche le nombre de places si il est définit #}
+        {% if hackathon.nbPlaces != null %}
+            <p>{{hackathon.nbPlaces}} places</p>
+        {% endif %}
+
+
+        {# Bouton vers les infos du hackathon #}
+        <a href="{{path('app_informationhackathon',{id : hackathon.id})}}" class="btn btn-primary">Plus d'infos</a>
+
+
+    </div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
+{% endblock %}
+
+

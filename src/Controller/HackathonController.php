@@ -5,14 +5,17 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Hackathon;
+use Doctrine\Persistence\ManagerRegistry;
 
 class HackathonController extends AbstractController
 {
-    #[Route('/hackathon', name: 'app_hackathon')]
-    public function index(): Response
+    #[Route('/hackathon', name: 'app_listeHackathon')]
+    public function index(ManagerRegistry $doctrine): Response
     {
-        return $this->render('hackathon/index.html.twig', [
-            'controller_name' => 'HackathonController',
+        $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
+        return $this->render('hackathon/listeHackathon.html.twig', [
+            'lesHackathons' => $repository->findAll() #on récupère tout les hackathons qu'on passera en param lors du rendu
         ]);
     }
 }
