@@ -23,10 +23,10 @@ class Utilisateur
     #[ORM\Column(length: 128)]
     private ?string $mail = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(name : "dateNaissance", type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateNaissance = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name : "lienPortfolio", length: 255)]
     private ?string $lienPortfolio = null;
 
     #[ORM\Column(length: 255)]
