@@ -20,7 +20,7 @@
 <p>Description: {{ leHackaton.description|default('Pas de description') }}</p>
 
 {# Nombre de Places #}
-<p>Nombre de places: {{ leHackaton.nbPlaces }}</p>
+{% if leHackaton.nbplaces != null %}<p>Nombre de places: {{ leHackaton.nbPlaces }}</p>{% endif %}
 
 {# Lieu (Lieu + Rue + Ville + CP) #}
 <p>Lieu: {{ leHackaton.lieu }}, {{ leHackaton.rue }}, {{ leHackaton.ville }} ({{ leHackaton.codePostal }})</p>
