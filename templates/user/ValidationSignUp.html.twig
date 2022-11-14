@@ -3,7 +3,25 @@
 {% block body %}
 
 <h1> Votre compte a été créé </h1>
+<div class="img-thumbnail" style="margin-left:500px;margin-right:500px;">
 <div class="recapCompte">
+    Nom : {{nom}} <br/>
+    Prénom : {{prenom}} <br/>
+    Date de naissance : {{dateNaissance}} <br/>
+    Email : {{email}} <br/>
+    Téléphone : {{tel}} <br/>
+    Portfolio : <a href="{{portfolio}}">Portfolio de {{prenom}} {{nom}}</a>
+</div>
 </div>
 
+<style>
+h1{
+    text-align:center;
+}
+.recapCompte{
+    text-align:center;
+    background-color:#EAEAEA;
+    border-radius:4px;
+}
+</style>
 {% endblock %}
