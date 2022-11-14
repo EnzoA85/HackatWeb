@@ -151,7 +151,6 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-
     public function getPassword(): string
     {
         return $this->mdp;
