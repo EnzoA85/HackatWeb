@@ -10,16 +10,38 @@ use App\Entity\Utilisateur;
 
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
-    public function index(): Response
-    {
-        return $this->render('user/index.html.twig', ['controller_name' => 'UserController',]);
-    }
 
-    #[Route('/SignUp', name: 'app_créercompte')]
-    public function créercompte(): Response
+    #[Route('/SignUp/{uc}', name: 'app_créercompte')]
+    public function créercompte($uc, ManagerRegistry $doctrine): Response
     {
-        return $this->render('user/creercompte.html.twig');
+        if($uc == "formulaire"){
+            return $this->render('user/creercompte.html.twig');
+        }
+        else if ($uc == "validation") {
+            $nom=$_POST["nom"];
+            $prenom=$_POST["prenom"];
+            $email=$_POST["email"];
+            $dateNaissance=$_POST["dateNaissance"];
+            $tel=$_POST["tel"];
+            $lienportfolio=$_POST["portfolio"];
+            $mdp=$_POST["mdp"];
+            $confmdp=$_POST["confmdp"];
+            if($mdp==$confmdp)
+            {
+                $user = new Utilisateur();
+                $user->setNom($nom);
+                $user->setPrenom($prenom);
+                $user->setMail($email);
+                $user->setDateNaissance(new \DateTime($dateNaissance));
+                $user->setTel($tel);
+                $user->setLienPortfolio($lienportfolio);
+                $user->setPassword(password_hash($mdp,PASSWORD_BCRYPT));
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return $this->render('home/index.html.twig'); 
+            }
+        }
     }
 
     #[Route('/ValidationSignUp', name: 'app_Validercreercompte')]

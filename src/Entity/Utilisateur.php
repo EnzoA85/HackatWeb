@@ -40,7 +40,7 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 10)]
     private ?string $tel = null;
 
-    #[ORM\Column(type: 'json')]
+    #[ORM\Column(type: 'json', nullable: true)]
     private $roles = [];
 
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Inscription::class)]
