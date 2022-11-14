@@ -42,7 +42,7 @@ class UserController extends AbstractController
             $user->setDateNaissance(new \DateTime($dateNaissance));
             $user->setTel($tel);
             $user->setLienPortfolio($lienportfolio);
-            $user->setMdp($mdp);
+            $user->setMdp(password_hash($mdp,PASSWORD_BCRYPT));
             $entityManager = $doctrine->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
