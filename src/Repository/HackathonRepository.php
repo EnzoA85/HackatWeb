@@ -50,7 +50,7 @@ class HackathonRepository extends ServiceEntityRepository
     public function findLikeDate($searchHackathon)
     {
         $query=$this->createQueryBuilder('s')
-            ->where('s.theme LIKE :key')
+            ->where('s.ville LIKE :key')
             ->orderBy('s.dateDebut', 'asc')
             ->setParameter('key', '%'.$searchHackathon.'%')->getQuery();
         return $query->getResult();
