@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,6 +36,14 @@ class Utilisateur
 
     #[ORM\Column(length: 10)]
     private ?string $tel = null;
+
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Inscription::class)]
+    private Collection $lesInscriptions;
+
+    public function __construct()
+    {
+        $this->lesInscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +130,36 @@ class Utilisateur
     public function setTel(string $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getLesInscriptions(): Collection
+    {
+        return $this->lesInscriptions;
+    }
+
+    public function addLesInscription(Inscription $lesInscription): self
+    {
+        if (!$this->lesInscriptions->contains($lesInscription)) {
+            $this->lesInscriptions->add($lesInscription);
+            $lesInscription->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesInscription(Inscription $lesInscription): self
+    {
+        if ($this->lesInscriptions->removeElement($lesInscription)) {
+            // set the owning side to null (unless already changed)
+            if ($lesInscription->getUtilisateur() === $this) {
+                $lesInscription->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }
