@@ -41,6 +41,9 @@ class UserController extends AbstractController
                 $entityManager->flush();
                 return $this->render('home/index.html.twig'); 
             }
+            else{
+                return $this->render('user/creercompte.html.twig');
+            }
         }
     }
 }
