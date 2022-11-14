@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hackathon;
 use Doctrine\Persistence\ManagerRegistry;
+use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
 class HackathonController extends AbstractController
 {
@@ -16,6 +17,15 @@ class HackathonController extends AbstractController
         $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
         return $this->render('hackathon/listeHackathon.html.twig', [
             'lesHackathons' => $repository->findDate() #on récupère tout les hackathons qu'on passera en param lors du rendu
+        ]);
+    }
+
+    #[Route('/hackathon', name: 'app_rechercheListeHackathon')]
+    public function afficheRechercheList(ManagerRegistry $doctrine): Response
+    {
+        $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
+        return $this->render('hackathon/listeHackathon.html.twig', [
+            'lesHackathons' => $repository->findLikeDate($searchHackathon) #on récupère tout les hackathons qu'on passera en param lors du rendu
         ]);
     }
 

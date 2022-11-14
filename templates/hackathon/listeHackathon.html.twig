@@ -7,8 +7,14 @@
 <div class="container-fluid">
 
 {# Titre pour la page #}
-<h1 class="titre">Liste des {{lesHackathons|length}} Hackathons</h1>
+<h1 class="titre">Liste des {{lesHackathons|length}} Hackathons</h1><br/>
 
+<center>
+<form method="POST" action="{{path('app_rechercheListeHackathon')}}">
+    <input type="text" name='searchHackathon' id='searchHackathon'></input>
+    <input type='submit' value='Rechercher'></input>
+</form><br/>
+</center>
 
 <div class="row">
 

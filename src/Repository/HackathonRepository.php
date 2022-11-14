@@ -41,8 +41,19 @@ class HackathonRepository extends ServiceEntityRepository
 
     public function findDate()
     {
-       $query=$this->createQueryBuilder('h')->orderBy('h.dateDebut', 'asc')->getQuery();
+       $query=$this->createQueryBuilder('h')
+            ->orderBy('h.dateDebut', 'asc')
+            ->getQuery();
        return $query->getResult();
+    }
+    
+    public function findLikeDate($searchHackathon)
+    {
+        $query=$this->createQueryBuilder('s')
+            ->where('s.theme LIKE :key')
+            ->orderBy('s.dateDebut', 'asc')
+            ->setParameter('key', '%'.$searchHackathon.'%')->getQuery();
+        return $query->getResult();
     }
 
 //    /**
