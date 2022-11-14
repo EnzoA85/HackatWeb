@@ -1,21 +1,29 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}L'agence{% endblock %}
+
 {% block body %}
-<form action="{{path('app_inscription', {uc : "validation" }) }}" method="post">
-    <label for="utilisateur">mail :</label>
-    <input type="number" id="utilisateur" name="utilisateur"> <br>
-    <label for="hackathon">id :</label>
-    <input type="number" id="hackathon" name="hackathon"> <br>
+<h1>Inscription à un Hackathon</h1>
+<div class="img-thumbnail" style="margin-left:500px;margin-right:500px;">
+<form class="Inscription" action="{{path('app_inscription', {uc : "validation" }) }}" method="post"><br/>
+    <label for="utilisateur">id User :</label>
+    <input type="number" id="utilisateur" name="utilisateur"><br/><br/>
+    <label for="hackathon">id Hackathon :</label>
+    <input type="number" id="hackathon" name="hackathon"><br/><br/>
     <label for="texteLibre">texteLibre :</label>
-    <input type="text" id="texteLibre" name="texteLibre">
-    <input type="submit" value="S'inscrire">
+    <input type="text" id="texteLibre" name="texteLibre"><br/><br/>
+    <input type="submit" value="S'inscrire"><br/><br/>
 </form>
-<p> {{uc}} </p>
-{% if ( uc == "validation" ) %}
-    <p>aaa</p>
-    <p>{{hackathon}}</p>
-    <p>{{utilisateur}}</p>
-    <p>{{date}}</p>
-    <p>{{texte}}</p>
-{% endif %}
+</div>
+
+<style>
+h1{
+    text-align:center;
+}
+.Inscription{
+    text-align:center;
+    background-color:#EAEAEA;
+    border-radius:4px;
+}
+</style>
 {% endblock %}

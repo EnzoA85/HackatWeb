@@ -13,41 +13,39 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
-    #[Route('/SignUp', name: 'app_créercompte')]
-    public function créercompte(): Response
+    #[Route('/SignUp/{uc}', name: 'app_créercompte')]
+    public function créercompte($uc, ManagerRegistry $doctrine): Response
     {
-        return $this->render('user/creercompte.html.twig');
-    }
-
-    #[Route('/ValidationSignUp', name: 'app_Validercreercompte')]
-    public function validercreercompte(ManagerRegistry $doctrine, UserPasswordHasherInterface $passwordhasher)
-    {
-        $nom=$_POST["nom"];
-        $prenom=$_POST["prenom"];
-        $email=$_POST["email"];
-        $dateNaissance=$_POST["dateNaissance"];
-        $tel=$_POST["tel"];
-        $lienportfolio=$_POST["portfolio"];
-        $mdp=$_POST["mdp"];
-        $confmdp=$_POST["confmdp"];
-        if($mdp==$confmdp)
-        {
-            $user = new Utilisateur();
-            $user->setNom($nom);
-            $user->setPrenom($prenom);
-            $user->setMail($email);
-            $user->setDateNaissance(new \DateTime($dateNaissance));
-            $user->setTel($tel);
-            $user->setLienPortfolio($lienportfolio);
-            $plaintextPassword = $mdp;
-            $hashedPassword = $passwordhasher->hashPassword(
-                $user, $plaintextPassword
-            );
-            $user->setPassword($hashedPassword);
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-            return $this->render('user/ValidationSignUp.html.twig', ['nom' => $nom, 'prenom' => $prenom, 'email'=>$email,'dateNaissance'=>$dateNaissance,'tel'=>$tel,'portfolio'=>$lienportfolio,]); 
+        if($uc == "formulaire"){
+            return $this->render('user/creercompte.html.twig');
+        }
+        else if ($uc == "validation") {
+            $nom=$_POST["nom"];
+            $prenom=$_POST["prenom"];
+            $email=$_POST["email"];
+            $dateNaissance=$_POST["dateNaissance"];
+            $tel=$_POST["tel"];
+            $lienportfolio=$_POST["portfolio"];
+            $mdp=$_POST["mdp"];
+            $confmdp=$_POST["confmdp"];
+            if($mdp==$confmdp)
+            {
+                $user = new Utilisateur();
+                $user->setNom($nom);
+                $user->setPrenom($prenom);
+                $user->setMail($email);
+                $user->setDateNaissance(new \DateTime($dateNaissance));
+                $user->setTel($tel);
+                $user->setLienPortfolio($lienportfolio);
+                $user->setPassword(password_hash($mdp,PASSWORD_BCRYPT));
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+                return $this->render('home/index.html.twig'); 
+            }
+            else{
+                return $this->render('user/creercompte.html.twig');
+            }
         }
     }
 

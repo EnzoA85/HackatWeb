@@ -8,6 +8,7 @@ security:
             entity:
                 class: App\Entity\Utilisateur
                 property: mail
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/

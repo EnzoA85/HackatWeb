@@ -35,11 +35,14 @@
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="{{path('app_listeHackathon')}}">Les Hackatons</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="{{path('app_inscription', {uc : "form" })}}">Inscriptions</a>
+						</li>
 					</ul>
 					<div class="co">
 						<ul class="nav">
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('app_créercompte')}}" style="color:white">Sign Up</a>
+								<a class="nav-link" href="{{path('app_créercompte', {uc : "validation" })}}" style="color:white">Sign Up</a>
 							</li>
 							<!-- Button trigger du modal de connexion -->
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoginModal">
