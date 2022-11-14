@@ -20,12 +20,13 @@ class HackathonController extends AbstractController
         ]);
     }
 
-    #[Route('/hackathon', name: 'app_rechercheListeHackathon')]
+    #[Route('/hackathons', name: 'app_rechercheListeHackathon')]
     public function afficheRechercheList(ManagerRegistry $doctrine): Response
     {
+        $recherche = $_POST['searchHackathon'];
         $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
         return $this->render('hackathon/listeHackathon.html.twig', [
-            'lesHackathons' => $repository->findLikeDate($searchHackathon) #on récupère tout les hackathons qu'on passera en param lors du rendu
+            'lesHackathons' => $repository->findLikeDate($recherche) #on récupère tout les hackathons qu'on passera en param lors du rendu
         ]);
     }
 
