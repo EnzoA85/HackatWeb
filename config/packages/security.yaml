@@ -15,14 +15,11 @@ security:
             security: false
         main:
             lazy: true
-<<<<<<< HEAD
             provider: app_user_provider
 
             form_login:
                 login_path: app_login
                 check_path: app_login
-=======
->>>>>>> b7c7cc570c933e05dd482f24fe5e69251f200269
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
