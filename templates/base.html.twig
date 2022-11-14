@@ -63,25 +63,27 @@
 					<h5 class="modal-title" id="exampleModalLabel">Connexion</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<div
-					class="modal-body">
-					<!--login -->
-					<div class="form-group">
-						<label for="exampleInputEmail1">Identifiant</label>
-						<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-					</div>
+				<form method="POST" action="/">
+					<div
+						class="modal-body">
+						<!--login -->
+						<div class="form-group">
+							<label for="exampleInputEmail1">Identifiant</label>
+							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+						</div>
+						<!--mdp -->
+						<div class="form-group">
+							<label for="exampleInputPassword1">Password</label>
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div>
+					</br>
 					<!--mdp -->
 					<div class="form-group">
-						<label for="exampleInputPassword1">Password</label>
-						<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						<center>
+							<button type="submit" class="btn btn-primary">Se Connecter</button>
+						</center>
 					</div>
-				</br>
-				<!--mdp -->
-				<div class="form-group">
-					<center>
-						<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Se Connecter</button>
-					</center>
-				</div>
+				</form>
 			</div>
 		</div>
 	</html>
