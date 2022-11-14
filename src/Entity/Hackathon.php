@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HackathonRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -52,6 +54,14 @@ class Hackathon
 
     #[ORM\Column(name : "nbPlaces", nullable: true)]
     private ?int $nbPlaces = null;
+
+    #[ORM\OneToMany(mappedBy: 'hackathon', targetEntity: Inscription::class)]
+    private Collection $lesInscriptions;
+
+    public function __construct()
+    {
+        $this->lesInscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -210,5 +220,35 @@ class Hackathon
     public function setNbPlaces(?int $nbPlaces): self
     {
         $this->nbPlaces = $nbPlaces;
+    }
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getLesInscriptions(): Collection
+    {
+        return $this->lesInscriptions;
+    }
+
+    public function addLesInscription(Inscription $lesInscription): self
+    {
+        if (!$this->lesInscriptions->contains($lesInscription)) {
+            $this->lesInscriptions->add($lesInscription);
+            $lesInscription->setHackathon($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesInscription(Inscription $lesInscription): self
+    {
+        if ($this->lesInscriptions->removeElement($lesInscription)) {
+            // set the owning side to null (unless already changed)
+            if ($lesInscription->getHackathon() === $this) {
+                $lesInscription->setHackathon(null);
+            }
+        }
+
+        return $this;
     }
 }
