@@ -207,10 +207,8 @@ class Hackathon
         return $this->nbPlaces;
     }
 
-    public function setNbPlaces(?int $nbPlace): self
+    public function setNbPlaces(?int $nbPlaces): self
     {
-        $this->nbPlace = $nbPlaces;
-
-        return $this;
+        $this->nbPlaces = $nbPlaces;
     }
 }
