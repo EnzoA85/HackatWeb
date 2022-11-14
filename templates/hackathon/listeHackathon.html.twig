@@ -29,7 +29,8 @@
     <div class="card-body">
         <h5 class="card-title">{{hackathon.theme}}</h5>
         <p>{{hackathon.ville}}</p>
-        <p>{{hackathon.dateDebut|date("m/d/Y")}} - {{hackathon.dateFin|date("m/d/Y")}}</p>
+        <p>date début :{{hackathon.dateDebut|date("m/d/Y")}}</p>
+        <p>date fin : {{hackathon.dateFin|date("m/d/Y")}}</p>
 
 
         {# Affiche le nombre de places si il est définit #}
