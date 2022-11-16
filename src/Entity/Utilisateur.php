@@ -3,11 +3,16 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 #[ORM\Entity(repositoryClass: UtilisateurRepository::class)]
-class Utilisateur
+class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -20,7 +25,7 @@ class Utilisateur
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 128)]
+    #[ORM\Column(type: 'string', length: 128, unique: true)]
     private ?string $mail = null;
 
     #[ORM\Column(name : "dateNaissance", type: Types::DATE_MUTABLE)]
@@ -34,6 +39,17 @@ class Utilisateur
 
     #[ORM\Column(length: 10)]
     private ?string $tel = null;
+
+    #[ORM\Column(type: 'json', nullable: true)]
+    private $roles = [];
+
+    #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Inscription::class)]
+    private Collection $lesInscriptions;
+
+    public function __construct()
+    {
+        $this->lesInscriptions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -100,18 +116,6 @@ class Utilisateur
         return $this;
     }
 
-    public function getMdp(): ?string
-    {
-        return $this->mdp;
-    }
-
-    public function setMdp(string $mdp): self
-    {
-        $this->mdp = $mdp;
-
-        return $this;
-    }
-
     public function getTel(): ?string
     {
         return $this->tel;
@@ -120,6 +124,78 @@ class Utilisateur
     public function setTel(string $tel): self
     {
         $this->tel = $tel;
+
+        return $this;
+    }
+
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->mdp = $password;
+
+        return $this;
+    }
+
+
+    public function getPassword(): string
+    {
+        return $this->mdp;
+    }
+
+    //Fonction retournant le login (ici le mail)
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->mail;
+    }
+
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+
+    /**
+     * @return Collection<int, Inscription>
+     */
+    public function getLesInscriptions(): Collection
+    {
+        return $this->lesInscriptions;
+    }
+
+    public function addLesInscription(Inscription $lesInscription): self
+    {
+        if (!$this->lesInscriptions->contains($lesInscription)) {
+            $this->lesInscriptions->add($lesInscription);
+            $lesInscription->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesInscription(Inscription $lesInscription): self
+    {
+        if ($this->lesInscriptions->removeElement($lesInscription)) {
+            // set the owning side to null (unless already changed)
+            if ($lesInscription->getUtilisateur() === $this) {
+                $lesInscription->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }

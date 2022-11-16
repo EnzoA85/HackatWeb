@@ -7,8 +7,15 @@
 <div class="container-fluid">
 
 {# Titre pour la page #}
-<h1 class="titre">Liste des {{lesHackathons|length}} Hackathons</h1>
+<h1 class="titre">Liste des {{lesHackathons|length}} Hackathons</h1><br/>
 
+<center>
+
+<form method="POST" action="{{path('app_rechercheListeHackathon')}}">
+    <input type="text" name='searchHackathon' id='searchHackathon'></input>
+    <input type='submit' value='Rechercher'></input>
+</form><br/>
+</center>
 
 <div class="row">
 
@@ -29,7 +36,8 @@
     <div class="card-body">
         <h5 class="card-title">{{hackathon.theme}}</h5>
         <p>{{hackathon.ville}}</p>
-        <p>{{hackathon.dateDebut|date("m/d/Y")}} - {{hackathon.dateFin|date("m/d/Y")}}</p>
+        <p>date début :{{hackathon.dateDebut|date("m/d/Y")}}</p>
+        <p>date fin : {{hackathon.dateFin|date("m/d/Y")}}</p>
 
 
         {# Affiche le nombre de places si il est définit #}

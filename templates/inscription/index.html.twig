@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}L'agence{% endblock %}
+{% block body %}
+<form action="{{path('app_inscription', {uc : "validation" }) }}" method="post">
+    <label for="utilisateur">mail :</label>
+    <input type="number" id="utilisateur" name="utilisateur"> <br>
+    <label for="hackathon">id :</label>
+    <input type="number" id="hackathon" name="hackathon"> <br>
+    <label for="texteLibre">texteLibre :</label>
+    <input type="text" id="texteLibre" name="texteLibre">
+    <input type="submit" value="S'inscrire">
+</form>

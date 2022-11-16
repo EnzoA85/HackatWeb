@@ -10,14 +10,9 @@ use App\Entity\Utilisateur;
 
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
-    public function index(): Response
-    {
-        return $this->render('user/index.html.twig', ['controller_name' => 'UserController',]);
-    }
 
-    #[Route('/SignUp', name: 'app_créercompte')]
-    public function créercompte(): Response
+    #[Route('/SignUp/{uc}', name: 'app_créercompte')]
+    public function créercompte($uc, ManagerRegistry $doctrine): Response
     {
         return $this->render('user/creercompte.html.twig');
     }
@@ -39,7 +34,7 @@ class UserController extends AbstractController
         $user->setDateNaissance(new \DateTime($dateNaissance));
         $user->setTel($tel);
         $user->setLienPortfolio($lienportfolio);
-        $user->setMdp(password_hash($mdp,PASSWORD_BCRYPT));
+        $user->setPassword(password_hash($mdp,PASSWORD_BCRYPT));
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
