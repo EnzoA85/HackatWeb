@@ -32,21 +32,17 @@ class UserController extends AbstractController
         $tel=$_POST["tel"];
         $lienportfolio=$_POST["portfolio"];
         $mdp=$_POST["mdp"];
-        $confmdp=$_POST["confmdp"];
-        if($mdp==$confmdp)
-        {
-            $user = new Utilisateur();
-            $user->setNom($nom);
-            $user->setPrenom($prenom);
-            $user->setMail($email);
-            $user->setDateNaissance(new \DateTime($dateNaissance));
-            $user->setTel($tel);
-            $user->setLienPortfolio($lienportfolio);
-            $user->setMdp(password_hash($mdp,PASSWORD_BCRYPT));
-            $entityManager = $doctrine->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-            return $this->render('user/ValidationSignUp.html.twig', ['nom' => $nom, 'prenom' => $prenom, 'email'=>$email,'dateNaissance'=>$dateNaissance,'tel'=>$tel,'portfolio'=>$lienportfolio,]); 
-        }
+        $user = new Utilisateur();
+        $user->setNom($nom);
+        $user->setPrenom($prenom);
+        $user->setMail($email);
+        $user->setDateNaissance(new \DateTime($dateNaissance));
+        $user->setTel($tel);
+        $user->setLienPortfolio($lienportfolio);
+        $user->setMdp(password_hash($mdp,PASSWORD_BCRYPT));
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_home',); 
     }
 }
