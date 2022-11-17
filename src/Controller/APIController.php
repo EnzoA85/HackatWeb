@@ -86,4 +86,39 @@ class APIController extends AbstractController
         // retour du tableau en reponse JS
         return new JsonResponse($tableauHackathon);
     }
+
+    //api d'un seul hacathon via l'id
+    #[Route('/api/inscription', name: 'app_apiUnHackathon')]
+    public function apiInscription($idHackaton, $idUtilisateur,  ManagerRegistry $doctrine): Response
+    {
+        //On recherche un hackathon via l'id de l'url parmis tout les hackathons
+        $repository = $doctrine->getRepository(Hackathon::class);
+        $leHackathon = $repository->findOneBy(['id' => $idHackaton]);
+
+        //On recherche un utilisateur via l'id de l'url parmis tout les utilisateurs
+        $repository = $doctrine->getRepository(Utilisateur::class);
+        $leHackathon = $repository->findOneBy(['id' => $idUtilisateur]);
+
+        // On créé et remplit un tableau pour le hackathon
+        $tableauHackathon=[];
+        $tableauHackathon[]=[
+            'id'=>$leHackathon->getId(),
+            'dateDebut'=>$leHackathon->getDateDebut(),
+            'lieu'=>$leHackathon->getLieu(),
+            'rue'=>$leHackathon->getRue(),
+            'ville'=>$leHackathon->getVille(),
+            'codePostal'=>$leHackathon->getCodePostal(),
+            'theme'=>$leHackathon->getTheme(),
+            'description'=>$leHackathon->getDescription(),
+            'image'=>$leHackathon->getImage(),
+            'nbPlaces'=>$leHackathon->getNbPlaces(),
+            'heureDebut'=>$leHackathon->getHeureDebut(),
+            'dateFin'=>$leHackathon->getDateFin(),
+            'heureFin'=>$leHackathon->getHeureFin(),
+            'dateLimite'=>$leHackathon->getDateLimite()
+        ];
+
+        // retour du tableau en reponse JS
+        return new JsonResponse($tableauHackathon);
+    }
 }
