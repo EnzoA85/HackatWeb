@@ -17,13 +17,18 @@ use Symfony\Component\Serializer\Serializer;*/
 
 class APIController extends AbstractController
 {
+
+
     //api retournant un tableau de tout les hackathons
-    #[Route('/api', name: 'app_apiLesHackathons')]
+    #[Route('/api/hackathon', name: 'app_apiLesHackathons')]
     public function apiLesHackathons(ManagerRegistry $doctrine): JsonResponse
     {
+        //On recupère tout les hackathons
         
         $repository = $doctrine->getRepository(Hackathon::class);
         $lesHackathons = $repository->findAll();
+
+        //On créé et remplit un tableau avec tout les hackathons
         $tableauHackathons=[];
 
         //Boucle pour récupérer les informations de chaque hackathon
@@ -45,17 +50,21 @@ class APIController extends AbstractController
                     'dateLimite'=>$leHackathon->getDateLimite()
             ];
             }   
-  
+        //Renvoit du tableau des hackathons en JS
         return new JsonResponse($tableauHackathons);
     }
 
+
+
     //api d'un seul hacathon via l'id
-    #[Route('/api/{id}', name: 'app_apiUnHackathon')]
+    #[Route('/api/hackathon/{id}', name: 'app_apiUnHackathon')]
     public function apiUnHackathon($id,  ManagerRegistry $doctrine): Response
     {
+        //On recherche un hackathon via l'id de l'url parmis tout les hackathons
         $repository = $doctrine->getRepository(Hackathon::class);
         $leHackathon = $repository->findOneBy(['id' => $id]);
 
+        // On créé et remplit un tableau pour le hackathon
         $tableauHackathon=[];
         $tableauHackathon[]=[
             'id'=>$leHackathon->getId(),
@@ -73,6 +82,11 @@ class APIController extends AbstractController
             'heureFin'=>$leHackathon->getHeureFin(),
             'dateLimite'=>$leHackathon->getDateLimite()
         ];
+
+        // retour du tableau en reponse JS
         return new JsonResponse($tableauHackathon);
     }
+
+
+    
 }
