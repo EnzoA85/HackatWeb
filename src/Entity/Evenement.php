@@ -7,6 +7,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EvenementRepository::class)]
+#[ORM\InheritanceType('JOINED')]
 #[ORM\DiscriminatorColumn(name: 'type', type: 'string')]
 #[ORM\DiscriminatorMap(['conf'=> Conference::class, 'init'=> Initiation::class])]
 class Evenement
@@ -34,9 +35,6 @@ class Evenement
     #[ORM\ManyToOne(inversedBy: 'lesEvenements')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Hackathon $Hackathon = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $type = null;
 
     public function getId(): ?int
     {
@@ -111,18 +109,6 @@ class Evenement
     public function setIdHackathon(?Hackathon $Hackathon): self
     {
         $this->Hackathon = $Hackathon;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
 
         return $this;
     }

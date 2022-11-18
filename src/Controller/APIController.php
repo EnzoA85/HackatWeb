@@ -24,7 +24,7 @@ class APIController extends AbstractController
 
 
     //api retournant un tableau de tout les hackathons
-    #[Route('/api/hackathon', name: 'app_apiLesHackathons')]
+    #[Route('/api/hackathon', name: 'app_apiLesHackathons', methods: ['GET'])]
     public function apiLesHackathons(ManagerRegistry $doctrine): JsonResponse
     {
         //On recupère tout les hackathons
@@ -92,21 +92,24 @@ class APIController extends AbstractController
     }
 
     //route de test
-    #[Route('/api/testHeritage', name: 'app_apiUnHackathon')]
-    public function apiTestHeritage( Request $request, ManagerRegistry $doctrine): Response
+    #[Route('/api/ateliers/{id}', name: 'app_apiUnAtelier', methods: ['GET'])]
+    public function apiAteliersHackathon( $id, Request $request, ManagerRegistry $doctrine): Response
     {
+        // recuperer les ateliers avec l'id
         $entityManager = $doctrine->getManager();
-        $hackaton = $doctrine->getRepository(Hackathon::class)->findOneBy(['id' => 1]);
-        $evenement = new Initiation();
-        $evenement->setLibelle("libelle test");
-        $evenement->setDate(new \DateTime(date("d-m-y")));
-        $evenement->setDuree(2);
-        $evenement->setHeure(new \DateTime(date('h:i:s')));
-        $evenement->setSalle("test");
-        $evenement->setIdHackathon($hackaton);
-        $evenement->setType("Initiation");
-        $evenement->setNbPlaceLimite(23);
-        $entityManager->persist($evenement);
-        $entityManager->flush();
+        $lesAteliers = $doctrine->getRepository(Initiation::class)->findBy(['Hackathon' => $id]);
+
+        $tableauAtelier = [];
+        foreach($lesAteliers as $atelier){
+            $tableauAtelier[]=[
+                "id" => $atelier->getId(),
+                "libelle" => $atelier->getLibelle(),
+                "date" => $atelier->getDate(),
+                "heure" => $atelier->getHeure(),
+                "salle" => $atelier->getSalle(),
+                "nbPlaceLimite" => $atelier->getNbPlaceLimite()
+            ];
+        }
+        return new JsonResponse($tableauAtelier);
     }
 }
