@@ -61,7 +61,7 @@ class APIController extends AbstractController
 
 
     //api d'un seul hacathon via l'id
-    #[Route('/api/hackathon/{id}', name: 'app_apiUnHackathon')]
+    #[Route('/api/hackathon/{id}', name: 'app_apiUnHackathon', methods: ['GET'])]
     public function apiUnHackathon($id,  ManagerRegistry $doctrine): Response
     {
         //On recherche un hackathon via l'id de l'url parmis tout les hackathons
@@ -90,6 +90,8 @@ class APIController extends AbstractController
         // retour du tableau en reponse JS
         return new JsonResponse($tableauHackathon);
     }
+
+
 
     //route de test
     #[Route('/api/ateliers/{id}', name: 'app_apiUnAtelier', methods: ['GET'])]
