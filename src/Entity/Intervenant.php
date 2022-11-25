@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\IntervenantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: IntervenantRepository::class)]
@@ -18,6 +20,14 @@ class Intervenant
 
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
+
+    #[ORM\OneToMany(mappedBy: 'intervenant', targetEntity: Conference::class)]
+    private Collection $lesConferences;
+
+    public function __construct()
+    {
+        $this->lesConferences = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +54,36 @@ class Intervenant
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Conference>
+     */
+    public function getLesConferences(): Collection
+    {
+        return $this->lesConferences;
+    }
+
+    public function addLesConference(Conference $lesConference): self
+    {
+        if (!$this->lesConferences->contains($lesConference)) {
+            $this->lesConferences->add($lesConference);
+            $lesConference->setIntervenant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLesConference(Conference $lesConference): self
+    {
+        if ($this->lesConferences->removeElement($lesConference)) {
+            // set the owning side to null (unless already changed)
+            if ($lesConference->getIntervenant() === $this) {
+                $lesConference->setIntervenant(null);
+            }
+        }
 
         return $this;
     }
