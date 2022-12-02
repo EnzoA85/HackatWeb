@@ -41,6 +41,9 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{path('app_créercompte')}}" style="color:white">Sign Up</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_logout')}}" style="color:white">Déconnection</a>
+							</li>
 							<!-- Button trigger du modal de connexion -->
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoginModal">
 								Login
@@ -69,7 +72,7 @@
 						<!--login, avec name= _username et value = la valeur transmise par le controller -->
 						<div class="form-group">
 							<label for="login">Identifiant</label>
-							<input type="email" class="form-control" id="login" name="_username" value="{{last_username}}" aria-describedby="emailHelp" placeholder="Enter email">
+							<input type="email" class="form-control" id="login" name="_username" value="" aria-describedby="emailHelp" placeholder="Enter email">
 						</div>
 						<!--mdp -->
 						<div class="form-group">
