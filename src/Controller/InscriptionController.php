@@ -22,7 +22,14 @@ class InscriptionController extends AbstractController
     si l'uc est validation, on enregistre les informations dans la bdd avant de render la page principale du site.
     */
     {
-        return $this->render('inscription/index.html.twig');
+        $hackathons = [];
+        foreach ($doctrine->getRepository(Hackathon::class)->findAll() as $hackathon){
+            $listeInscription = $doctrine->getRepository(Inscription::class)->findBy(["hackathon" => $hackathon, "utilisateur" => $this->getUser()]);
+            if (count($listeInscription) == 0 && $hackathon->getDateLimite() > date("YYYY-MM-DD")){
+                $hackathons[] = $hackathon;
+            }
+        }
+        return $this->render('inscription/index.html.twig', ["les_hackathons" => $hackathons]);
     }
 
     #[Route('/ValidationInscription', name: 'app_ValiderInscription')]
