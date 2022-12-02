@@ -44,16 +44,28 @@
 					</ul>
 					<div class="co">
 						<ul class="nav">
+							{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{path('app_créercompte', {uc : "validation" })}}" style="color:white">Sign Up</a>
 							</li>
+							{% endif %}
+							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li class="nav-item">
+							<!-- bouton déconnexion uniquement visible quand connecté)-->
 								<a class="nav-link" href="{{path('app_logout')}}" style="color:white">Déconnection</a>
 							</li>
+							{% endif %}
+							{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 							<!-- Button trigger du modal de connexion -->
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoginModal">
 								Login
 							</button>
+							{% endif %}
+							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+							<li class="nav-item">
+								<a class="nav-link" style="color:white">Connécté en tant que {{ app.user.getNom}} {{ app.user.getPrenom}}</a>
+							</li>
+							{% endif %}
 						</ul>
 					</div>
 				</div>
