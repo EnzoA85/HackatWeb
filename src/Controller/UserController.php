@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class UserController extends AbstractController
 {
     #[Route('/SignUp', name: 'app_créercompte')]
-    public function créercompte($uc, ManagerRegistry $doctrine): Response
+    public function créercompte( ManagerRegistry $doctrine): Response
     /*
     [route pour la page de creation de comptes]
 
