@@ -5,9 +5,7 @@
 {% block body %}
 <h1>Inscription à un Hackathon</h1>
 <div class="img-thumbnail" style="margin-left:500px;margin-right:500px;">
-<form class="Inscription" action="{{path('app_inscription', {uc : "validation" }) }}" method="post"><br/>
-    <label for="utilisateur">id User :</label>
-    <input type="number" id="utilisateur" name="utilisateur"><br/><br/>
+<form class="Inscription" action="{{path('app_inscription') }}" method="post"><br/>
     <label for="hackathon">id Hackathon :</label>
     <input type="number" id="hackathon" name="hackathon"><br/><br/>
     <label for="texteLibre">texteLibre :</label>
