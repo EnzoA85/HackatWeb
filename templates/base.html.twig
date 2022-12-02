@@ -44,6 +44,9 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{path('app_créercompte', {uc : "validation" })}}" style="color:white">Sign Up</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{path('app_logout')}}" style="color:white">Déconnection</a>
+							</li>
 							<!-- Button trigger du modal de connexion -->
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoginModal">
 								Login
@@ -64,18 +67,20 @@
 					<h5 class="modal-title" id="exampleModalLabel">Connexion</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+
+
 				<form method="POST" action="{{path('app_login')}}">
 					<div
 						class="modal-body">
-						<!--login -->
+						<!--login, avec name= _username et value = la valeur transmise par le controller -->
 						<div class="form-group">
-							<label for="exampleInputEmail1">Identifiant</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+							<label for="login">Identifiant</label>
+							<input type="email" class="form-control" id="login" name="_username" value="" aria-describedby="emailHelp" placeholder="Enter email">
 						</div>
 						<!--mdp -->
 						<div class="form-group">
-							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+							<label for="password">Password</label>
+							<input type="password" class="form-control" id="password" name="_password" placeholder="Password">
 						</div>
 					</br>
 					<!--mdp -->
@@ -85,6 +90,8 @@
 						</center>
 					</div>
 				</form>
+
+
 			</div>
 		</div>
 	</html>

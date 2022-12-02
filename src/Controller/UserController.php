@@ -50,13 +50,4 @@ class UserController extends AbstractController
         return $this->redirectToRoute('app_home',); 
     }
 
-    #[Route('', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        // obtenir la dernière erreur
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // obtenir le dernier utilisateur entré
-        $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('home/index.html.twig', ['last_username' =>$lastUsername,'error'=>$error]);
-    }
 }
