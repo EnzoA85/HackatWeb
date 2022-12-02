@@ -11,6 +11,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+
 class UserController extends AbstractController
 {
     #[Route('/SignUp/{uc}', name: 'app_créercompte')]
@@ -43,11 +44,11 @@ class UserController extends AbstractController
         $user->setDateNaissance(new \DateTime($dateNaissance));
         $user->setTel($tel);
         $user->setLienPortfolio($lienportfolio);
-        $user->setPassword(password_hash($mdp,PASSWORD_BCRYPT));
+        $user->setPassword($mdp);
+        $user->setRoles(['ROLE_USER']);
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
         return $this->redirectToRoute('app_home',); 
     }
-
 }
