@@ -1,17 +1,33 @@
 {% extends 'base.html.twig' %}
 {% block title %}L'agence{% endblock %}
 {% block body %}
-<div class="hackatagence">
-    <br/><h1 class="titre">L'Agence Hackat'Agence</h1><br/><br/><br/>
-    <div class="container-fluid">
-        <div class="row content">
-            <div class="col-sm-6">
-                <br/><br/><img class="imgExempleHackathon" src="{{asset('images/hackatagence.jpg')}}" width="100%" height="500">
+<div class="hackatagence"style="background-color:#F1F1F1;">
+
+    <div class="hautPage">
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-sm-7">
+                    <div style="margin-top:150px;"></div>
+                    <h1 class="titre">L'Agence Hackat'Agence</h1>
+                    <h3 style="text-align:center;color:white;text-shadow: 1px 1px 3px black;">L'agence organisatricce d'hackathons</h3>
                 </div>
-                <div class="col-sm-5 sidenav" style="margin-left:50px;">
-                <div class="defHackathon">
-                    <h3 class="titreDefHackathon">Qu'est-ce-qu'un Hackathon ?</h3>
-                    <p class="paraDefHackathon">
+                <div class="col-sm-5 sidenav">
+                    <div style="margin-top:50px;"></div>
+                    <img style="border:solid white 3px;border-radius : 50px;" src="{{asset('images/hackathon.png')}}" width="75%" height="400">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color:black;font-size:1px;">f</div>
+    <div class="espace"></div>
+
+    <div style="background-color:#F1F1F1">
+        <h3 class="soustitre">Qu'est-ce-qu'un Hackathon ?</h3>
+        <div class="espace"></div>
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-sm-5">
+                    <p class="paragraphe">
                         L'hackathon est un processus créatif utilisé dans le domaine de l'innovation numérique. Durant
                         généralement un week-end, des développeurs volontaires se réunissent pour faire de la
                         programmation informatique en mode collaboratif sur un thème défini. L’engouement pour ce type
@@ -19,37 +35,55 @@
                         de la société.
                     </p>
                 </div>
+                <div class="col-sm-6 sidenav">
+                    <img style="border:solid black 3px;border-radius : 300px;" src="{{asset('images/hackatagence.jpg')}}" width="100%" height="500">
+                </div>
             </div>
         </div>
     </div>
-    <div class="espace">
+
+    <div class="espace"></div>
+    <div style="background-color:black;font-size:1px;">f</div>
+    <div style="background-color:#222222;">
+        <br/><br/><br/><h3 class="soustitre2">Déroulement d'un Hackathon</h3>
+        <div class="espace"></div>
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-sm-6 sidenav">
+                    <img style="border:solid white 3px;border-radius : 50px;margin-left:100px;" src="{{asset('images/orgaHackathon.jpg')}}" width="80%" height="500">
+                </div>
+                <div class="col-sm-5">
+                    <p class="paragraphe2">
+                        Même s’ils peuvent porter sur des thèmes variés, les hackathons se déroulent toujours selon un même schéma :<br/>
+                        • L’accueil des participants et la présentation constituent la première phase du hackathon ;<br/>
+                        • Les équipes travaillent ensuite sur le développement de leur projet : remue-méninges,
+                        maquettage, prototypage, etc. Lors de ces phases de travail, les équipes sont
+                        accompagnées par des mentors (coachs) de différents domaines (développement,graphisme, communication, etc.) ;<br/>
+                        • À l’issue de ce travail intensif, chaque équipe présente son prototype au jury ;<br/>
+                        • Enfin, la délibération du jury puis la proclamation des résultats et la remise des récompenses constituent la dernière phase du hackathon
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="deroulementHackathon">
-        <h3 class="titreDeroulementHackathon">Déroulement d'un Hackathon</h3>
-        <p class="paraDeroulementHackathon">
-            Même s’ils peuvent porter sur des thèmes variés, les hackathons se déroulent toujours selon un même schéma :<br/>
-            • L’accueil des participants et la présentation constituent la première phase du hackathon ;<br/>
-            • Les équipes travaillent ensuite sur le développement de leur projet : remue-méninges,
-            maquettage, prototypage, etc. Lors de ces phases de travail, les équipes sont
-            accompagnées par des mentors (coachs) de différents domaines (développement,graphisme, communication, etc.) ;<br/>
-            • À l’issue de ce travail intensif, chaque équipe présente son prototype au jury ;<br/>
-            • Enfin, la délibération du jury puis la proclamation des résultats et la remise des récompenses constituent la dernière phase du hackathon
-        </p>
-    </div><br/>
 </div>
 
 <style>
-html, body{
+.soustitre{
+    text-align:center;
+}
+.soustitre2{
+    text-align:center;
+    color:white;
+}
+.hautPage{
     background-image: url("images/fondHackathon.png");
     background-size: cover;
     background-repeat: no-repeat;
-}
-.hackatagence{
-    backdrop-filter:brightness(0.5);
-    min-height:100%;
+    min-height:500px;
 }
 .espace{
-    margin-top:170px;
+    margin-top:70px;
 }
 .titre{
     text-align:center;
@@ -57,47 +91,20 @@ html, body{
     color:white;
     text-decoration:underline;
     font-size:50px;
-    text-shadow: 1px 1px 2px white;
-}
-.imgExempleHackathon{
-    border:solid black 3px;
-    border-radius : 300px;
-}
-.defHackathon{
-    margin-top:170px;
-    text-align:center;
-}
-.titreDefHackathon{
-    font-weight:bold;
-    color:white;
-}
-.titreDeroulementHackathon{
-    font-weight:bold;
-    color:white;
-}
-.paraDefHackathon{
-    font-size:20px;
-    text-align:justify;
-    padding:10px;
-    color:#F7F7F7;
-    border:solid black 3px;
-    border-radius : 10px;
     text-shadow: 1px 1px 2px black;
 }
-.deroulementHackathon{
-    text-align:center;
-    margin-top:50px;
-}
-.paraDeroulementHackathon{
-    font-size:20px;
+.paragraphe{
     text-align:justify;
-    padding:10px;
-    color:#F7F7F7;
-    border:solid black 3px;
-    border-radius : 10px;
-    margin:50px;
-    text-shadow: 1px 1px 2px black;
-    margin-top: -0px;
+    margin-left:50px;
+    margin-right:50px;
+    font-size:25px;
+}
+.paragraphe2{
+    text-align:justify;
+    margin-left:50px;
+    margin-right:50px;
+    font-size:25px;
+    color:white;
 }
 </style>
 {% endblock %}
