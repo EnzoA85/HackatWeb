@@ -47,7 +47,7 @@ class HackathonRepository extends ServiceEntityRepository
        return $query->getResult();
     }
     
-    public function findLikeDate($searchHackathon)
+    public function findLikeVille($searchHackathon)
     {
         $query=$this->createQueryBuilder('s')
             ->where('s.ville LIKE :key')
