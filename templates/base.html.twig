@@ -38,6 +38,9 @@
 						<li class="nav-item">
 							<a class="nav-link active" aria-current="page" href="{{path('app_inscription', {uc : "form" })}}">Inscriptions</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="{{path('app_inscription', {uc : "form" })}}"></a>
+						</li>
 					</ul>
 					<div class="co">
 						<ul class="nav">
@@ -70,12 +73,12 @@
 						<!--login -->
 						<div class="form-group">
 							<label for="exampleInputEmail1">Identifiant</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+							<input type="email" name="_username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email">
 						</div>
 						<!--mdp -->
 						<div class="form-group">
 							<label for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+							<input type="password" name="_password" class="form-control" id="password" placeholder="Password">
 						</div>
 					</br>
 					<!--mdp -->
