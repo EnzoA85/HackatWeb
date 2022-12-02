@@ -13,7 +13,7 @@ use Doctrine\Persistence\ManagerRegistry;
 class InscriptionController extends AbstractController
 {
     #[Route('/inscription', name: 'app_inscription')]
-    public function index($uc, ManagerRegistry $doctrine): Response
+    public function index( ManagerRegistry $doctrine): Response
     /*
     [route pour la page d'inscription]
 
@@ -25,7 +25,7 @@ class InscriptionController extends AbstractController
         return $this->render('inscription/index.html.twig');
     }
 
-    #[Route('/ValidationInscription', name: 'app_Validercreercompte')]
+    #[Route('/ValidationInscription', name: 'app_ValiderInscription')]
     public function validercreercompte(ManagerRegistry $doctrine)
     {
             // on change rentre chaque paramètres
@@ -33,8 +33,8 @@ class InscriptionController extends AbstractController
             $inscription->setTexteLibre($_POST["texteLibre"]);
             $inscription->setDateInscription(new \DateTime(date_default_timezone_get()));
 
-            $inscription->setHackathon($this->getUser()); // on cherche un hackathon par rapport à l'id entrer
-            $inscription->setUtilisateur($doctrine->getRepository(Utilisateur::class)->findOneBy(['id' => $_POST["utilisateur"]])); // on cherche un utilisateur par rapport à l'id entrer
+            $inscription->setHackathon($doctrine->getRepository(Hackathon::class)->findOneBy(['id' => $_POST["hackathon"]])); // on cherche un hackathon par rapport à l'id entrer
+            $inscription->setUtilisateur($this->getUser()); // on cherche un utilisateur par rapport à l'utilisateur connecter
             
             $entityManager = $doctrine->getManager();
             $entityManager->persist($inscription);
