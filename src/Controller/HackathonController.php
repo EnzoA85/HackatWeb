@@ -26,7 +26,7 @@ class HackathonController extends AbstractController
         $recherche = $_POST['searchHackathon'];
         $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
         return $this->render('hackathon/listeHackathon.html.twig', [
-            'lesHackathons' => $repository->findLikeDate($recherche) #on récupère tout les hackathons qu'on passera en param lors du rendu
+            'lesHackathons' => $repository->findLikeVille($recherche) #on récupère tout les hackathons trié par date qu'on passera en param lors du rendu
         ]);
     }
 
