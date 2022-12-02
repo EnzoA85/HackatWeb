@@ -44,21 +44,11 @@ class UserController extends AbstractController
         $user->setDateNaissance(new \DateTime($dateNaissance));
         $user->setTel($tel);
         $user->setLienPortfolio($lienportfolio);
-        $user->setPassword(password_hash($mdp,PASSWORD_BCRYPT));
+        $user->setPassword($mdp);
         $user->setRoles(['ROLE_USER']);
         $entityManager = $doctrine->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
         return $this->redirectToRoute('app_home',); 
-    }
-
-    #[Route('', name: 'app_login')]
-    public function login(AuthenticationUtils $authenticationUtils): Response
-    {
-        // obtenir la dernière erreur
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // obtenir le dernier utilisateur entré
-        $lastUsername = $authenticationUtils->getLastUsername();
-        return $this->render('home/index.html.twig', ['last_username' =>$lastUsername,'error'=>$error]);
     }
 }
