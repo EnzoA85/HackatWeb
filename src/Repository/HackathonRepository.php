@@ -46,6 +46,14 @@ class HackathonRepository extends ServiceEntityRepository
             ->getQuery();
        return $query->getResult();
     }
+
+    public function nbInscrit($idHackathon)
+    {
+        $query=$this->createQueryBuilder('g')
+            ->where('g.idHackathon=:key')
+            ->setParameter('key', $idHackathon)->getQuery();
+        return $query->getResult();
+    }
     
     public function findLikeVille($searchHackathon)
     {

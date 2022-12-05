@@ -16,7 +16,7 @@ class HackathonController extends AbstractController
     {
         $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
         return $this->render('hackathon/listeHackathon.html.twig', [
-            'lesHackathons' => $repository->findAll() #on récupère tout les hackathons qu'on passera en param lors du rendu
+            'lesHackathons' => $repository->findAll(), #on récupère tout les hackathons qu'on passera en param lors du rendu
         ]);
     }
 
