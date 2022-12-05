@@ -52,7 +52,7 @@
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li class="nav-item">
 							<!-- bouton déconnexion uniquement visible quand connecté)-->
-								<a class="nav-link" href="{{path('app_logout')}}" style="color:white">Déconnection</a>
+								<a class="btn btn-primary" class="nav-link" href="{{path('app_logout')}}" style="color:white">Déconnexion</a>
 							</li>
 							{% endif %}
 							{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -63,7 +63,7 @@
 							{% endif %}
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li class="nav-item">
-								<a class="nav-link" style="color:white">Connécté en tant que {{ app.user.getNom}} {{ app.user.getPrenom}}</a>
+								<a class="nav-link" style="color:white">Connécté en tant que {{ app.user.getNom}} {{ app.user.getPrenom}}.</a>
 							</li>
 							{% endif %}
 						</ul>
