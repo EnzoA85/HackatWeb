@@ -15,6 +15,7 @@ class HackathonController extends AbstractController
     public function afficheList(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
+        // liste hackathon = [[infoHackathon : hackathon, place dispo : nb], [infoHackathon : hackathon, place dispo : nb], ... ]
         $listeHackat = [];
         foreach ($repository->findAll() as $hackathon ){
             $listeHackat[] = array("infoHackathon" => $hackathon, "placesDispo" => ($hackathon->getNbPlaces() - $hackathon->getLesInscriptions()->count()));
@@ -29,7 +30,7 @@ class HackathonController extends AbstractController
     {
         $recherche = $_POST['searchHackathon'];
         $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
-        // [[hackathon : hackat, place dispo : nb], [hackathon : hackat, place dispo : nb]]
+        // liste hackathon = [[infoHackathon : hackathon, place dispo : nb], [infoHackathon : hackathon, place dispo : nb], ... ]
         $listeHackat = [];
         foreach ($repository->findLikeVille($recherche) as $hackathon ){
             $listeHackat[] = array("infoHackathon" => $hackathon, "placesDispo" => ($hackathon->getNbPlaces() - $hackathon->getLesInscriptions()->count()));
