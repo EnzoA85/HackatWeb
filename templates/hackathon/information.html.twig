@@ -21,6 +21,7 @@
 
 {# Nombre de Places #}
 {% if leHackaton.nbplaces != null %}<p>Nombre de places: {{ leHackaton.nbPlaces }}</p>{% endif %}
+Nombre de restantes: {{ nbPlaceRestantes }}
 
 {# Lieu (Lieu + Rue + Ville + CP) #}
 <p>Lieu: {{ leHackaton.lieu }}, {{ leHackaton.rue }}, {{ leHackaton.ville }} ({{ leHackaton.codePostal }})</p>

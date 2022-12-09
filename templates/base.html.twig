@@ -48,7 +48,7 @@
 						<ul class="nav">
 							{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('app_créercompte', {uc : "validation" })}}" style="color:white">Sign Up</a>
+								<a class="nav-link" href="{{path('app_créercompte')}}" style="color:white">Sign Up</a>
 							</li>
 							{% endif %}
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}

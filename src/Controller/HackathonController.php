@@ -14,9 +14,9 @@ class HackathonController extends AbstractController
     #[Route('/hackathon', name: 'app_listeHackathon')]
     public function afficheList(ManagerRegistry $doctrine): Response
     {
-        $repository = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
+        $repositoryHackathons = $doctrine->getRepository(Hackathon::class); #recuperation du repository des Hackathons
         return $this->render('hackathon/listeHackathon.html.twig', [
-            'lesHackathons' => $repository->findAll(), #on récupère tout les hackathons qu'on passera en param lors du rendu
+            'lesHackathons' => $repositoryHackathons->findAll(), #on récupère tout les hackathons qu'on passera en param lors du rendu
         ]);
     }
 
@@ -35,8 +35,10 @@ class HackathonController extends AbstractController
     {
         $repository = $doctrine->getRepository(Hackathon::class);
         $leHackathon = $repository->find($id);
+        $nbPlaceRestantes = $leHackathon->getNbPlaces()-count($leHackathon->getLesInscriptions());
+
         return $this->render('hackathon/information.html.twig', [
-            'leHackaton' => $leHackathon,
+            'leHackaton' => $leHackathon,'nbPlaceRestantes' => $nbPlaceRestantes
         ]);
     }
 }
