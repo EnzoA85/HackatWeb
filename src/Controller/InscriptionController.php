@@ -14,13 +14,6 @@ class InscriptionController extends AbstractController
 {
     #[Route('/inscription', name: 'app_inscription')]
     public function index( ManagerRegistry $doctrine): Response
-    /*
-    [route pour la page d'inscription]
-
-    Fonctionne avec les cas d'utilisateurs (uc) :
-    si l'uc est form (valeur de base), alors on render la page avec le formulaire pour s'inscrire.
-    si l'uc est validation, on enregistre les informations dans la bdd avant de render la page principale du site.
-    */
     {
         $hackathons = [];
         foreach ($doctrine->getRepository(Hackathon::class)->findAll() as $hackathon){

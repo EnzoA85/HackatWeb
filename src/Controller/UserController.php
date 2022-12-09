@@ -16,13 +16,6 @@ class UserController extends AbstractController
 {
     #[Route('/SignUp', name: 'app_créercompte')]
     public function créercompte( ManagerRegistry $doctrine): Response
-    /*
-    [route pour la page de creation de comptes]
-
-    Fonctionne avec les cas d'utilisateurs (uc) :
-    si l'uc est form (valeur de base), alors on render la page avec le formulaire de creation de compte.
-    si l'uc est validation, on enregistre les informations dans la bdd avant de render la page principale du site.
-    */
     {
         return $this->render('user/creercompte.html.twig');
     }
