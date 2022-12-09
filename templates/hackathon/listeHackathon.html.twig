@@ -31,27 +31,27 @@
 
 
     {# Affiche l'image si le hackathon en a une #}
-    {% if hackathon.image != null %}
-        <img class="card-img-top" src="{{hackathon.image}}" style="height: 5vw; object-fit: cover;">
+    {% if hackathon.infoHackathon.image != null %}
+        <img class="card-img-top" src="{{hackathon.infoHackathon.image}}" style="height: 5vw; object-fit: cover;">
     {% endif %}
 
 
     {# body contenu de la card #}
     <div class="card-body">
-        <h5 class="card-title">{{hackathon.theme}}</h5>
-        <p>{{hackathon.ville}}</p>
-        <p>date début :{{hackathon.dateDebut|date("m/d/Y")}}</p>
-        <p>date fin : {{hackathon.dateFin|date("m/d/Y")}}</p>
+        <h5 class="card-title">{{hackathon.infoHackathon.theme}}</h5>
+        <p>{{hackathon.infoHackathon.ville}}</p>
+        <p>date début :{{hackathon.infoHackathon.dateDebut|date("m/d/Y")}}</p>
+        <p>date fin : {{hackathon.infoHackathon.dateFin|date("m/d/Y")}}</p>
 
 
         {# Affiche le nombre de places si il est définit #}
-        {% if hackathon.nbPlaces != null %}
-            <p>{{hackathon.nbPlaces}} places</p>
+        {% if hackathon.infoHackathon.nbPlaces != null %}
+            <p>{{hackathon.placesDispo}} places disponibles</p>
         {% endif %}
 
 
         {# Bouton vers les infos du hackathon #}
-        <a href="{{path('app_informationhackathon',{id : hackathon.id})}}" class="btn btn-primary">Plus d'infos</a>
+        <a href="{{path('app_informationhackathon',{id : hackathon.infoHackathon.id})}}" class="btn btn-primary">Plus d'infos</a>
 
 
     </div>
