@@ -56,7 +56,7 @@ class APIController extends AbstractController
             ];
             }   
         //Renvoit du tableau des hackathons en JS
-        return new JsonResponse($tableauHackathons, ['Access-Control-Allow-Origin'=>'*']);
+        return new JsonResponse($tableauHackathons, 200, ['Access-Control-Allow-Origin'=>'*']);
     }
 
 
@@ -89,7 +89,7 @@ class APIController extends AbstractController
         ];
 
         // retour du tableau en reponse JS
-        return new JsonResponse($tableauHackathon, ['Access-Control-Allow-Origin'=>'*']);
+        return new JsonResponse($tableauHackathon, 200, ['Access-Control-Allow-Origin'=>'*']);
     }
 
 
@@ -153,7 +153,7 @@ class APIController extends AbstractController
                 "nbPlaceLimite" => $atelier->getNbPlaceLimite()
             ];
         }
-        return new JsonResponse($tableauAtelier, ['Access-Control-Allow-Origin'=>'*']);
+        return new JsonResponse($tableauAtelier, 200, ['Access-Control-Allow-Origin'=>'*']);
     }
 
 
@@ -210,7 +210,7 @@ class APIController extends AbstractController
             ];
             }   
         //Renvoit du tableau des participants en JS
-        return new JsonResponse($tableauParticipants, ['Access-Control-Allow-Origin'=>'*']);
+        return new JsonResponse($tableauParticipants, 200, ['Access-Control-Allow-Origin'=>'*']);
     }
 
 
@@ -234,7 +234,7 @@ class APIController extends AbstractController
         ];
 
         // retour du tableau en reponse JS
-        return new JsonResponse($tableauParticipant, ['Access-Control-Allow-Origin'=>'*']);
+        return new JsonResponse($tableauParticipant, 200, ['Access-Control-Allow-Origin'=>'*']);
     }
 
 
