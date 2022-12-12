@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block title %}Accueil{% endblock %}
 {% block body %}
+{% if errors is defined and errors != null  %}
+	<div class="alert alert-danger">Erreur d'authentification: {{ errors.messageKey|trans(errors.messageData,'security') }}</div>
+{% endif %}
 <h1 class="titre">Hackat'Agence</h1>
 <img class="imglogoHackathon" src="{{asset('images/hackathon.png')}}" width="40%" height="40%">
 <style>
