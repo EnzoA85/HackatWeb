@@ -11,8 +11,9 @@
 {{form_row(form.dateNaissance)}}
 {{form_row(form.lienPortfolio)}}
 {{form_row(form.tel)}}
-{{form_row(form.mdp)}}
-<input type="submit" value="Valider" name="add" id="add">
+{{ form_row(form.mdp.first) }}
+{{ form_row(form.mdp.second) }}
+<button type="submit" class="btn btn-primary" name="add" id="add">Valider</button>
 {{form_end(form)}}
 
 </div>
