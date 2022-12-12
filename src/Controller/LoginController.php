@@ -20,10 +20,6 @@ class LoginController extends AbstractController
             'errors'=>$errors
         ]);
     }
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
-    {
-        dd('failure');
-    }
 
     #[Route('/logout', name: 'app_logout')]   
     public function logout()
