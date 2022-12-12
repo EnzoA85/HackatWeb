@@ -155,6 +155,17 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->mdp;
     }
 
+    public function getmdp(): ?string
+    {
+        return $this->mdp;
+    }
+
+    public function setmdp(string $password): self
+    {
+        $this->mdp = $password;
+        return $this;
+    }
+
     //Fonction retournant le login (ici le mail)
     public function getUserIdentifier(): string
     {

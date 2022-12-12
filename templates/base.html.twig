@@ -48,7 +48,7 @@
 						<ul class="nav">
 							{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('app_créercompte')}}" style="color:white">Sign Up</a>
+								<a class="nav-link" href="{{path('app_créercompte')}}" style="color:white">Créer un compte</a>
 							</li>
 							{% endif %}
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -60,7 +60,7 @@
 							{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 							<!-- Button trigger du modal de connexion -->
 							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#LoginModal">
-								Login
+								Se connecter
 							</button>
 							{% endif %}
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -89,13 +89,13 @@
 						class="modal-body">
 						<!--login, avec name= _username et value = la valeur transmise par le controller -->
 						<div class="form-group">
-							<label for="login">Identifiant</label>
+							<label for="login">Email</label>
 							<input type="email" class="form-control" id="login" name="_username" value="" aria-describedby="emailHelp" placeholder="Enter email">
 						</div>
 						<!--mdp -->
 						<div class="form-group">
-							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" name="_password" placeholder="Password">
+							<label for="password">Mot de Passe</label>
+							<input type="password" class="form-control" id="password" name="_password" placeholder="Mot de Passe">
 						</div>
 					</br>
 					<!--mdp -->

@@ -3,19 +3,22 @@
 {% block body %}
 <h1>Créer un compte</h1>
 <div class="img-thumbnail" style="margin-left:500px;margin-right:500px;">
-<form class="creationCompte" method="POST" action="{{path('app_Validercreercompte')}}"><br/>
-    <label for="nom">Nom</label> <input type="text" id="nom" name="nom" placeholder="Nom"><br/><br/>
-    <label for="prenom">Prenom</label> <input type="text" id="prenom" name="prenom" placeholder="Prénom"><br/><br/>
-    <label for="email">Email</label> <input type="email" id="email" name="email" placeholder="Email" ><br/><br/>
-    <label for="dateNaissance">Date de Naissance</label> <input type="date" id="dateNaissance" name="dateNaissance" placeholder="Date de naissance"><br/><br/>
-    <label for="tel">Téléphone</label> <input type="tel" id="tel" name="tel" minlength="10" maxlength="10" pattern="[0]{1}[0-9]{9}"required placeholder="Téléphone"><br/><br/>
-    <label for="portfolio">Lien Portfolio</label> <input type="url" id="portfolio" name="portfolio" placeholder="Portfolio"><br/><br/>
-    <label for="mdp">Mot de Passe</label> <input type="password" id="mdp" name="mdp" placeholder="Mot de Passe" required><br/><br/>
-    <label for="confmdp">Confirmer Mot de Passe</label> <input type="password" id="confmdp" name="confmdp" placeholder="Confirmer mot de passe" required><br/><br/>
-    <input type="submit" value="Créer"><br/><br/>
-</form>
+
+{{form_start(form)}}
+{{form_row(form.nom)}}
+{{form_row(form.prenom)}}
+{{form_row(form.mail)}}
+{{form_row(form.dateNaissance)}}
+{{form_row(form.lienPortfolio)}}
+{{form_row(form.tel)}}
+{{ form_row(form.mdp.first) }}
+{{ form_row(form.mdp.second) }}
+<button type="submit" class="btn btn-primary" name="add" id="add">Valider</button>
+{{form_end(form)}}
+
 </div>
 
+<<<<<<< HEAD
 <script>
 var password = document.getElementById("mdp")
   , confirm_password = document.getElementById("confmdp");
@@ -32,6 +35,8 @@ password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 </script>
 
+=======
+>>>>>>> f2e0eaf331fa54aacd8c1013e5a8ce49181223f1
 <style>
 h1{
     text-align:center;
