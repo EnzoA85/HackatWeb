@@ -27,14 +27,14 @@ class UserType extends AbstractType
             ->add('mdp', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe ne sont pas identiques.',
-                'options' => ['attr' => ['class' => 'password-field']],
+                'options' => ['attr' => ['class' => 'password-field','pattern'=>'[a-z]{1,}[A-Z]{1,}[0-9]{1,}','minlength'=>12]],
                 'required' => true,
                 'first_options'  => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmer le mot de passe'],
             ])
             ->add('tel',TelType::class, [
                 'label' => 'Téléphone',
-                'attr' => ['pattern' => '[0]{1}[1-9]{1}[0-9]{8}', 'maxlength' => 10]
+                'attr' => ['pattern' => '[0]{1}[1-9]{1}[0-9]{8}', 'maxlength' => 10],
             ])
         ;
     }
