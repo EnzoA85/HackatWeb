@@ -23,7 +23,9 @@ class UserType extends AbstractType
             ->add('prenom')
             ->add('mail', EmailType::class)
             ->add('dateNaissance')
-            ->add('lienPortfolio', UrlType::class)
+            ->add('lienPortfolio', UrlType::class, [
+                'attr' => ['pattern' => "https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)"]
+            ])
             ->add('mdp', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe ne sont pas identiques.',
