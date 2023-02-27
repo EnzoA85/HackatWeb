@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hackathon;
 use Doctrine\Persistence\ManagerRegistry;
-use SebastianBergmann\CodeCoverage\Report\Xml\Report;
 
 class HackathonController extends AbstractController
 {
