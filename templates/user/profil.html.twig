@@ -2,8 +2,8 @@
 {% block title %}Hackat'Agence | Profil{% endblock %}
 {% block body %}
 
-<h1>Profil de {{user.nom}} {{user.prenom}}</h1>
-<div class="img-thumbnail" style="margin-left:500px;margin-right:500px;background-color:#EAEAEA;">
+<div class="img-thumbnail" style="margin-left:500px;margin-right:500px;margin-top:50px;background-color:#EAEAEA;">
+    <center><h1>Profil de {{user.nom}} {{user.prenom}}</h1></center>
     <table>
     <thead>
         <tr>
@@ -18,9 +18,8 @@
     </tbody>
     <tbody>
         {% for inscriptionUser in inscriptionsUser %}
-        {{dump(inscriptionUser)}}
             <tr>
-                <td></td>
+                <td>{{inscriptionUser.hackathon.theme}}</td>
                 <td>{{inscriptionUser.dateInscription|date("d/m/Y")}}</td>
             </tr>
         {% endfor %}

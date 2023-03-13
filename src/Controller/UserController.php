@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Hackathon;
 use App\Entity\Inscription;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -44,8 +45,14 @@ class UserController extends AbstractController
         $lastEmail = $authenticationUtils->getLastUsername();
         $repositoryUser = $doctrine->getRepository(Utilisateur::class);
         $repositoryInscription = $doctrine->getRepository(Inscription::class);
+        $repositoryHackathon = $doctrine->getRepository(Hackathon::class);
         $user = $repositoryUser->findBy(['mail'=>$lastEmail]);
-        $inscriptionUser = $repositoryInscription->findBy(['utilisateur'=>$user[0]->getid()]);
-        return $this->render('user/profil.html.twig', ['user'=>$user[0], 'inscriptionsUser'=>$inscriptionUser]);
+        $inscriptionsUser = $repositoryInscription->findBy(['utilisateur'=>$user[0]->getid()]);
+        $inscription = [];
+        foreach($inscriptionsUser as $inscriptionUser) {
+            $hackathonInscrit = $repositoryHackathon->findBy(['id'=>$inscriptionUser->getHackathon()->getid()]);
+            $inscription[] = $hackathonInscrit;
+        }
+        return $this->render('user/profil.html.twig', ['user'=>$user[0], 'inscriptionsUser'=>$inscriptionsUser]);
     }
 }
