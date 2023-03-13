@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block title %}Hackat'Agence | Profil{% endblock %}
 {% block body %}
-<h1>Profil</h1>
+
+<h1>Profil de {{user.nom}} {{user.prenom}}</h1>
 <div class="img-thumbnail" style="margin-left:500px;margin-right:500px;background-color:#EAEAEA;">
     <table>
     <thead>
@@ -10,9 +11,15 @@
         </tr>
     </thead>
     <tbody>
+        <tr style="font-weight:bold">
+            <td>Hackatons</td>
+            <td>Date de l'inscriptions</td>
+        </tr>
+    </tbody>
+    <tbody>
         <tr>
-            <td>The table body</td>
-            <td>with two columns</td>
+            <td>Test1</td>
+            <td>Test2</td>
         </tr>
     </tbody>
 </table>
@@ -23,6 +30,11 @@ table,
 td {
     border: 1px solid #333;
     margin:auto;
+}
+
+td {
+    padding-left:10px;
+    padding-right: 10px;
 }
 
 thead,

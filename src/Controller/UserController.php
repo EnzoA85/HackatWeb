@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Inscription;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
@@ -9,7 +10,7 @@ use App\Entity\Utilisateur;
 use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
 {
@@ -38,8 +39,13 @@ class UserController extends AbstractController
     }
 
     #[Route('/profil', name:'app_profil')]
-    public function profil()
+    public function profil(ManagerRegistry $doctrine,AuthenticationUtils $authenticationUtils)
     {
-        return $this->render('user/profil.html.twig', []);
+        $lastEmail = $authenticationUtils->getLastUsername();
+        $repositoryUser = $doctrine->getRepository(Utilisateur::class);
+        $repositoryInscription = $doctrine->getRepository(Inscription::class);
+        $user = $repositoryUser->findBy(['mail'=>$lastEmail]);
+        $inscriptionUser = $repositoryInscription->findBy(['utilisateur'=>$user[0]->getid()]);
+        return $this->render('user/profil.html.twig', ['user'=>$user[0], 'inscriptionUser'=>$inscriptionUser]);
     }
 }
