@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hackathon;
+use App\Entity\Inscription;
+use App\Entity\Utilisateur;
 use Doctrine\Persistence\ManagerRegistry;
 
 class HackathonController extends AbstractController
@@ -46,7 +48,7 @@ class HackathonController extends AbstractController
         $leHackathon = $repository->find($id);
         $placesDispo = $leHackathon->getNbPlaces() - $leHackathon->getLesInscriptions()->count();
         return $this->render('hackathon/information.html.twig', [
-            'leHackaton' => $leHackathon, "placesDispo" => $placesDispo
+            'leHackaton' => $leHackathon, "placesDispo" => $placesDispo, "listInscrits" => $list_nom_pnom_inscrit
         ]);
     }
 }

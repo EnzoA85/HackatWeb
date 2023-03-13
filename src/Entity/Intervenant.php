@@ -24,6 +24,9 @@ class Intervenant
     #[ORM\OneToMany(mappedBy: 'intervenant', targetEntity: Conference::class)]
     private Collection $lesConferences;
 
+    #[ORM\Column(length: 128, nullable: true)]
+    private ?string $mail = null;
+
     public function __construct()
     {
         $this->lesConferences = new ArrayCollection();
@@ -84,6 +87,18 @@ class Intervenant
                 $lesConference->setIntervenant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(?string $mail): self
+    {
+        $this->mail = $mail;
 
         return $this;
     }
