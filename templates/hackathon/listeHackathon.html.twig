@@ -40,13 +40,17 @@
     <div class="card-body">
         <h5 class="card-title">{{hackathon.infoHackathon.theme}}</h5>
         <p>{{hackathon.infoHackathon.ville}}</p>
-        <p>date début :{{hackathon.infoHackathon.dateDebut|date("m/d/Y")}}</p>
-        <p>date fin : {{hackathon.infoHackathon.dateFin|date("m/d/Y")}}</p>
+        <p>date début :{{hackathon.infoHackathon.dateDebut|date("d/m/Y")}}</p>
+        <p>date fin : {{hackathon.infoHackathon.dateFin|date("d/m/Y")}}</p>
 
 
         {# Affiche le nombre de places si il est définit #}
-        {% if hackathon.infoHackathon.nbPlaces != null %}
+        {% if hackathon.infoHackathon.nbPlaces > 1 %}
             <p>{{hackathon.placesDispo}} places disponibles</p>
+        {% elseif hackathon.infoHackathon.nbPlaces == 1 %}
+            <p>{{hackathon.placesDispo}} place disponible</p>
+        {% else %}
+            <p>aucun place disponible</p>
         {% endif %}
 
 
