@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% block title %}Hackat'Agence | Profil{% endblock %}
+{% block body %}
+
+<div class="img-thumbnail" style="margin-left:500px;margin-right:500px;margin-top:50px;background-color:#EAEAEA;">
+    <center><h1>Profil de {{user.nom}} {{user.prenom}}</h1></center>
+    <table>
+    <thead>
+        <tr>
+            <th colspan="2">Mes Inscriptions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="font-weight:bold">
+            <td>Hackatons</td>
+            <td>Date de l'inscriptions</td>
+        </tr>
+    </tbody>
+    <tbody>
+        {% for inscriptionUser in inscriptionsUser %}
+            <tr>
+                <td>{{inscriptionUser.hackathon.theme}}</td>
+                <td>{{inscriptionUser.dateInscription|date("d/m/Y")}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+<style>
+table,
+td {
+    border: 1px solid #333;
+    margin:auto;
+}
+
+td {
+    padding-left:10px;
+    padding-right: 10px;
+}
+
+thead,
+tfoot {
+    background-color: #333;
+    color: #fff;
+}
+</style>
+{% endblock %}
