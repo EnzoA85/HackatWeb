@@ -46,9 +46,13 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'utilisateur', targetEntity: Inscription::class)]
     private Collection $lesInscriptions;
 
+    #[ORM\ManyToMany(targetEntity: Hackathon::class)]
+    private Collection $favoris;
+
     public function __construct()
     {
         $this->lesInscriptions = new ArrayCollection();
+        $this->favoris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -205,6 +209,30 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
                 $lesInscription->setUtilisateur(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Hackathon>
+     */
+    public function getFavoris(): Collection
+    {
+        return $this->favoris;
+    }
+
+    public function addFavori(Hackathon $favori): self
+    {
+        if (!$this->favoris->contains($favori)) {
+            $this->favoris->add($favori);
+        }
+
+        return $this;
+    }
+
+    public function removeFavori(Hackathon $favori): self
+    {
+        $this->favoris->removeElement($favori);
 
         return $this;
     }
