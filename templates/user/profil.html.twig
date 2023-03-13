@@ -17,10 +17,13 @@
         </tr>
     </tbody>
     <tbody>
-        <tr>
-            <td>Test1</td>
-            <td>Test2</td>
-        </tr>
+        {% for inscriptionUser in inscriptionsUser %}
+        {{dump(inscriptionUser)}}
+            <tr>
+                <td></td>
+                <td>{{inscriptionUser.dateInscription|date("d/m/Y")}}</td>
+            </tr>
+        {% endfor %}
     </tbody>
 </table>
 

@@ -46,6 +46,6 @@ class UserController extends AbstractController
         $repositoryInscription = $doctrine->getRepository(Inscription::class);
         $user = $repositoryUser->findBy(['mail'=>$lastEmail]);
         $inscriptionUser = $repositoryInscription->findBy(['utilisateur'=>$user[0]->getid()]);
-        return $this->render('user/profil.html.twig', ['user'=>$user[0], 'inscriptionUser'=>$inscriptionUser]);
+        return $this->render('user/profil.html.twig', ['user'=>$user[0], 'inscriptionsUser'=>$inscriptionUser]);
     }
 }
