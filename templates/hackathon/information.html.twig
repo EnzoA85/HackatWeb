@@ -34,5 +34,21 @@
 {# Date limite d'inscription (si présente) #}
 {% if leHackaton.dateLimite != null %} <p>Date limite d'inscription: {{ leHackaton.dateLimite|date("d/m/y") }} </p> {% endif %}
 
+{# Bouton favoris seulement si connecté #}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    
+
+    {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
+    {% if estFavoris == False %}
+        <a href="/favoriHackathon/{{ leHackaton.id }}" class="js-lienFavoris">
+        <span> J'aime </span> 
+    {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
+    {% else %}
+        <span> J'aime plus </span> 
+    {% endif %}
+
+{% endif %}
+
 </div>
 {% endblock %}

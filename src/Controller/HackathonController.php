@@ -45,8 +45,25 @@ class HackathonController extends AbstractController
         $repository = $doctrine->getRepository(Hackathon::class);
         $leHackathon = $repository->find($id);
         $placesDispo = $leHackathon->getNbPlaces() - $leHackathon->getLesInscriptions()->count();
+
+        #On recherhe si un utilisateur est connecté
+        $user = $this->getUser();
+        if($user != null)
+        {
+            #On recherche si l'utilisateur connecté a mit ou non ce hackhaton 
+            $lesFavoris=$user->getFavoris();
+            /*foreach($favori in $lesFavoris)
+            {
+                
+            }
+            */
+            $estFavoris = False;
+            //var_dump($lesFavoris);
+        }
+
+
         return $this->render('hackathon/information.html.twig', [
-            'leHackaton' => $leHackathon, "placesDispo" => $placesDispo
+            'leHackaton' => $leHackathon, "placesDispo" => $placesDispo, "estFavoris" => $estFavoris, "listeFavs" => $lesFavoris,
         ]);
     }
 }

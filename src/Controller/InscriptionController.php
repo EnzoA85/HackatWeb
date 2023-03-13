@@ -56,7 +56,7 @@ class InscriptionController extends AbstractController
         $entityManager->persist($Utilisateur);
         $entityManager->flush();
 
-        return $this->render('/hackathons');
+        return $this->redirectToRoute("app_listeHackathon");
     }
 
 }
