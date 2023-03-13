@@ -40,9 +40,6 @@
 							<a class="nav-link active" aria-current="page" href="{{path('app_inscription')}}">Inscriptions</a>
 						</li>
 						{% endif %}
-						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="{{path('app_inscription')}}"></a>
-						</li>
 					</ul>
 					<div class="co">
 						<ul class="nav">
@@ -54,7 +51,9 @@
 							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li class="nav-item">
 							<!-- bouton déconnexion uniquement visible quand connecté)-->
-								<a class="btn btn-primary" class="nav-link" href="{{path('app_logout')}}" style="color:white">Déconnexion</a>
+								<a class="btn btn-danger" class="nav-link" href="{{path('app_logout')}}" style="color:white">Déconnexion</a>
+							<!-- bouton profil uniquement visible quand connecté)-->
+								<a class="btn btn-primary" class="nav-link" href="{{path('app_profil')}}" style="color:white">Profil</a>
 							</li>
 							{% endif %}
 							{% if not is_granted('IS_AUTHENTICATED_FULLY') %}

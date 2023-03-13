@@ -36,4 +36,10 @@ class UserController extends AbstractController
             'form'=>$form->createView(),
         ]);
     }
+
+    #[Route('/profil', name:'app_profil')]
+    public function profil()
+    {
+        return $this->render('user/profil.html.twig', []);
+    }
 }
