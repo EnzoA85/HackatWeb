@@ -41,12 +41,12 @@
 
     {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
     {% if estFavoris == true %}
-        <a href="/supprFavoriHackathon/{{ leHackaton.id }}" id="js-lienSupprFavoris">
+        <a href="/supprFavoriHackathon/{{ leHackaton.id }}" id="js-lienSupprFavoris" data-id='{{ leHackaton.id }}'>
         Supprimer des favoris
         </a>
     {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
     {% else %}
-        <a href="/favoriHackathon/{{ leHackaton.id }}" id="js-lienFavoris">
+        <a href="/favoriHackathon/{{ leHackaton.id }}" id="js-lienFavoris" data-id='{{ leHackaton.id }}'>
         Ajouter aux favoris
         </a>
     {% endif %}
