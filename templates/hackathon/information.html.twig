@@ -40,12 +40,15 @@
     
 
     {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
-    {% if estFavoris == False %}
+    {% if estFavoris == true %}
         <a href="/favoriHackathon/{{ leHackaton.id }}" class="js-lienFavoris">
-        <span> J'aime </span> 
+        <span> J'aime plus </span> 
+        </a>
     {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
     {% else %}
-        <span> J'aime plus </span> 
+        <a href="/favoriHackathon/{{ leHackaton.id }}" class="js-lienFavoris">
+        <span> J'aime </span> 
+        </a>
     {% endif %}
 
 {% endif %}

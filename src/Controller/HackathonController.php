@@ -45,20 +45,23 @@ class HackathonController extends AbstractController
         $repository = $doctrine->getRepository(Hackathon::class);
         $leHackathon = $repository->find($id);
         $placesDispo = $leHackathon->getNbPlaces() - $leHackathon->getLesInscriptions()->count();
-
+        $estFavoris = false;
+        $lesFavoris = null;
         #On recherhe si un utilisateur est connecté
         $user = $this->getUser();
         if($user != null)
         {
-            #On recherche si l'utilisateur connecté a mit ou non ce hackhaton 
+            
+            #On recherche si l'utilisateur connecté a mit ou non ce hackhaton en favoris en parcourant la liste des favoris (liste de Hackathons)
             $lesFavoris=$user->getFavoris();
-            /*foreach($favori in $lesFavoris)
+            foreach($lesFavoris as $unFavori)
             {
-                
+                #Si le favori existe, on passe estFavoris en true pour afficher un boutton pour supprimer de ses favoris (voir twig)
+                if($unFavori->getId() == $id)
+                {
+                    $estFavoris = true;
+                }
             }
-            */
-            $estFavoris = False;
-            //var_dump($lesFavoris);
         }
 
 
