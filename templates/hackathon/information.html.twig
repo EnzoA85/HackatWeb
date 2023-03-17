@@ -41,17 +41,19 @@
 
     {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
     {% if estFavoris == true %}
-        <a href="/favoriHackathon/{{ leHackaton.id }}" class="js-lienFavoris">
-        <span> J'aime plus </span> 
+        <a href="/supprFavoriHackathon/{{ leHackaton.id }}" id="js-lienSupprFavoris">
+        Supprimer des favoris
         </a>
     {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
     {% else %}
-        <a href="/favoriHackathon/{{ leHackaton.id }}" class="js-lienFavoris">
-        <span> J'aime </span> 
+        <a href="/favoriHackathon/{{ leHackaton.id }}" id="js-lienFavoris">
+        Ajouter aux favoris
         </a>
     {% endif %}
 
 {% endif %}
-
 </div>
+
+ <script src="{{asset('js/favoris.js')}}"></script>
+
 {% endblock %}
