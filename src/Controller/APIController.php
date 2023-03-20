@@ -157,7 +157,7 @@ class APIController extends AbstractController
 
 
     // route qui renvois les infos d'un participant
-    #[Route('/api/postParticipant', name: 'app_apiAjoutParticpant', methods: ['POST'])]
+    #[Route('/api/postParticipant', name: 'app_apiAjoutParticpant', methods: ['POST','OPTIONS'])]
     public function apiAjoutParticpant( Request $request, ManagerRegistry $doctrine)
     /* [FORME DU JSON DE LA REQUETE]
     {
@@ -172,15 +172,18 @@ class APIController extends AbstractController
         // recupere le contenu du fichier json + décode
         $request = $request->getContent();
         $request = json_decode($request, true);
+        dump($request);
 
         //on set le particpant
         $participant = new Participant();
         $participant->setNom($request["nom"]);
+        $participant->setInitiation($request["id"]);
         $participant->setPrenom($request["prenom"]);
-        $participant->setmail($request["mail"]);
+        $participant->setmail($request["email"]);
 
         $entityManager->persist($participant);
         $entityManager->flush();
+        return new JsonResponse($participant, 200);
     }
 
 
