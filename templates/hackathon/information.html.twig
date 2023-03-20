@@ -38,7 +38,6 @@
 
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     
-
     {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
     {% if estFavoris == true %}
         <a class="btn btn-primary" href="/supprFavoriHackathon/{{ leHackaton.id }}" id="js-lienFavoris" data-id='{{ leHackaton.id }}' data-type='suppr'>

@@ -21,8 +21,27 @@ class HackathonController extends AbstractController
         foreach ($repository->findAll() as $hackathon ){
             $listeHackat[] = array("infoHackathon" => $hackathon, "placesDispo" => ($hackathon->getNbPlaces() - $hackathon->getLesInscriptions()->count()));
         }
+
+        $tabFavoris = array();
+
+        #On recherhe si un utilisateur est connecté
+        $user = $this->getUser();
+
+        if($user != null)
+        {  
+            #On recherche si l'utilisateur connecté a mit ou non ce hackhaton en favoris en parcourant la liste des favoris (liste de Hackathons)
+            $lesFavoris=$user->getFavoris();
+            foreach($lesFavoris as $unFavori)
+            {
+                #Si le favori existe, on passe estFavoris en true pour afficher un boutton pour supprimer de ses favoris (voir twig)
+                $id = $unFavori->getId();
+                $tabFavoris[] += $id;
+            }
+
+        }
+        
         return $this->render('hackathon/listeHackathon.html.twig', [
-            'lesHackathons' => $listeHackat, #on récupère tout les hackathons qu'on passera en param lors du rendu
+            'lesHackathons' => $listeHackat,"tabFavoris" => $tabFavoris #on récupère tout les hackathons qu'on passera en param lors du rendu + un tableau avec les id des favoris
         ]);
     }
 
