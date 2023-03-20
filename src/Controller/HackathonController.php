@@ -65,10 +65,8 @@ class HackathonController extends AbstractController
                 }
             }
         }
-
-
         return $this->render('hackathon/information.html.twig', [
-            'leHackaton' => $leHackathon, "placesDispo" => $placesDispo, "estFavoris" => $estFavoris, "listeFavs" => $lesFavoris, "listInscrits" => $list_nom_pnom_inscrit
+            'leHackaton' => $leHackathon, "placesDispo" => $placesDispo, "estFavoris" => $estFavoris, "listeFavs" => $lesFavoris
         ]);
     }
 }

@@ -25,8 +25,33 @@
         {% endfor %}
     </tbody>
 </table>
-
+<br>
+{% if lesFavoris.count() != 0 %}
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">★ Mes Hackathons Favoris ★</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="font-weight:bold">
+            <td>Hackatons</td>
+        </tr>
+    </tbody>
+    <tbody>
+        {% for favori in lesFavoris %}
+            <tr>
+                <td>{{favori.theme}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<center> ☆ Vous n'avez pas de Hackathon dans vos favoris ☆ </center>
+{% endif %}
 </div>
+
+
 <style>
 table,
 td {

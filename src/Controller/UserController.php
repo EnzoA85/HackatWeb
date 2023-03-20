@@ -53,6 +53,13 @@ class UserController extends AbstractController
             $hackathonInscrit = $repositoryHackathon->findBy(['id'=>$inscriptionUser->getHackathon()->getid()]);
             $inscription[] = $hackathonInscrit;
         }
-        return $this->render('user/profil.html.twig', ['user'=>$user[0], 'inscriptionsUser'=>$inscriptionsUser]);
+        //on récupère l'utilisateur (enzo est débile et ne sait pas faire ça)
+        $Utilisateur = $this->getUser();
+        //récupération des favoris de l'utilisateur 
+        $lesFavoris = $Utilisateur->getFavoris();
+
+        return $this->render('user/profil.html.twig', [
+            'user'=>$user[0], 'inscriptionsUser'=>$inscriptionsUser, 'lesFavoris'=>$lesFavoris
+        ]);
     }
 }
