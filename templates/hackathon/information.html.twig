@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ leHackaton.theme }}{% endblock %}
+{% block title %}Hackat'Agence | {{ leHackaton.theme }}{% endblock %}
 
 {% block body %}
 <style>
@@ -34,5 +34,25 @@
 {# Date limite d'inscription (si présente) #}
 {% if leHackaton.dateLimite != null %} <p>Date limite d'inscription: {{ leHackaton.dateLimite|date("d/m/y") }} </p> {% endif %}
 
+{# Bouton favoris seulement si connecté #}
+
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    
+    {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
+    {% if estFavoris == true %}
+        <a class="btn btn-primary" href="/supprFavoriHackathon/{{ leHackaton.id }}" id="js-lienFavoris" data-id='{{ leHackaton.id }}' data-type='suppr'>
+        ★ Supprimer des favoris
+        </a>
+    {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
+    {% else %}
+        <a class="btn btn-primary" href="/favoriHackathon/{{ leHackaton.id }}" id="js-lienFavoris" data-id='{{ leHackaton.id }}' data-type='ajout'>
+        ☆ Ajouter aux favoris
+        </a>
+    {% endif %}
+
+{% endif %}
 </div>
+
+ <script src="{{asset('js/favoris.js')}}"></script>
+
 {% endblock %}

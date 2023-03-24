@@ -171,13 +171,13 @@ class APIController extends AbstractController
 
         // recupere le contenu du fichier json + décode
         $request = $request->getContent();
-        dump($request);
         $request = json_decode($request, true);
         dump($request);
 
         //on set le particpant
         $participant = new Participant();
         $participant->setNom($request["nom"]);
+        $participant->setInitiation($request["id"]);
         $participant->setPrenom($request["prenom"]);
         $participant->setmail($request["email"]);
 

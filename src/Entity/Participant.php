@@ -72,7 +72,7 @@ class Participant
         return $this->Initiation;
     }
 
-    public function setInitiation(?Initiation $Initiation): self
+    public function setInitiation(?int $Initiation): self
     {
         $this->Initiation = $Initiation;
 

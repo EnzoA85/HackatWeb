@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% block title %}Les Hackathons{% endblock %}
+{% block title %}Hackat'Agence | Les Hackathons{% endblock %}
 
 {% block body %}
 <div class="listeHackathons">
@@ -24,7 +24,6 @@
 {% endif %}
 
 {# chaque ligne du table va faire une card Bootstrap #}
-
 {% for hackathon in lesHackathons %}
 <div class="col col-lg-3 col-sm-12 col-12 d-flex"> {# d-flex : les cards ont toutes la même taille #}
   <div class="card" style="width:100%;margin-bottom : 10px;"> {# Définit les cards #}
@@ -57,6 +56,21 @@
         {# Bouton vers les infos du hackathon #}
         <a href="{{path('app_informationhackathon',{id : hackathon.infoHackathon.id})}}" class="btn btn-primary">Plus d'infos</a>
 
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    
+        {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
+        {% if hackathon.infoHackathon.id in tabFavoris %}
+            <a class="btn btn-primary js-lienFavoris" href="/supprFavoriHackathon/{{ hackathon.infoHackathon.id }}" data-id='{{ hackathon.infoHackathon.id }}' data-type='suppr'>
+            ★ Supprimer des favoris
+            </a>
+        {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
+        {% else %}
+            <a class="btn btn-primary js-lienFavoris" href="/favoriHackathon/{{ hackathon.infoHackathon.id }}" data-id='{{ hackathon.infoHackathon.id }}' data-type='ajout'>
+            ☆ Ajouter aux favoris
+            </a>
+        {% endif %}
+
+        {% endif %}
 
     </div>
   </div>
@@ -66,12 +80,12 @@
 </div>
 
 </div>
+ <script src="{{asset('js/favoris.js')}}"></script>
 <style>
 html,body{
     background-image: url("images/fondHackathon.png");
     background-repeat: no-repeat;
     background-size: cover;
-    height:100%;
 }
 .listeHackathons{
     backdrop-filter:blur(5px);
