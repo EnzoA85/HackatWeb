@@ -6,8 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hackathon;
-use App\Entity\Inscription;
-use App\Entity\Utilisateur;
 use Doctrine\Persistence\ManagerRegistry;
 
 class HackathonController extends AbstractController
