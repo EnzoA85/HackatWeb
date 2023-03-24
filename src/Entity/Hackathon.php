@@ -22,7 +22,7 @@ class Hackathon
     #[ORM\Column(name : "heureDebut", type: Types::TIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $heureDebut = null;
 
-    #[ORM\Column(name : "dateFin", type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(name : "dateFin", type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateFin = null;
 
     #[ORM\Column(name : "heureFin", type: Types::TIME_MUTABLE, nullable: true)]
@@ -49,7 +49,7 @@ class Hackathon
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
 
-    #[ORM\Column(name : "dateLimite", type: Types::DATE_MUTABLE, nullable: true)]
+    #[ORM\Column(name : "dateLimite", type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateLimite = null;
 
     #[ORM\Column(name : "nbPlaces", nullable: true)]
