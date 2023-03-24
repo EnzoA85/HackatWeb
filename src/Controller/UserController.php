@@ -62,4 +62,28 @@ class UserController extends AbstractController
             'user'=>$user[0], 'inscriptionsUser'=>$inscriptionsUser, 'lesFavoris'=>$lesFavoris
         ]);
     }
+
+    #[Route('/ajouterFavori/{id}', name:'app_addFavori')]
+    public function addFavori($id,ManagerRegistry $doctrine)
+    {
+        $hackathon = $doctrine->getRepository(Hackathon::class)->findBy(['id'=>$id]);
+        $entityManager = $doctrine->getManager();
+        $user = $this->getUser();
+        $user->addFavori($hackathon[0]);
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_listeHackathon');
+    }
+
+    #[Route('/deleteFavori/{id}', name:'app_deleteFavori')]
+    public function deleteFavori($id,ManagerRegistry $doctrine)
+    {
+        $hackathon = $doctrine->getRepository(Hackathon::class)->findBy(['id'=>$id]);
+        $entityManager = $doctrine->getManager();
+        $user = $this->getUser();
+        $user->removeFavori($hackathon[0]);
+        $entityManager->persist($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('app_listeHackathon');
+    }
 }
