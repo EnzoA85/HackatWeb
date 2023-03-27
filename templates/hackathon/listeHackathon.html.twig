@@ -49,15 +49,6 @@
                         {% endif %}
                         {# Bouton vers les infos du hackathon #}
                         <a href="{{path('app_informationhackathon',{id : hackathon.infoHackathon.id})}}" class="btn btn-primary">Plus d'infos</a>
-                        {# Affiche le nombre de places si il est définit #}
-                        {% if hackathon.placesDispo > 1 %}
-                            <p>{{hackathon.placesDispo}} places disponibles</p>
-                        {% elseif hackathon.placesDispo == 1 %}
-                            <p>{{hackathon.placesDispo}} place disponible</p>
-                        {% else %}
-                            <p>aucune place disponible</p>
-                        {% endif %}
-
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     
                             {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
@@ -72,6 +63,15 @@
                                 </a>
                             {% endif %}
 
+                        {% endif %}
+                        {# Affiche le nombre de places si il est définit #}
+                        <br/>
+                        {% if hackathon.placesDispo > 1 %}
+                            <small>{{hackathon.placesDispo}} places disponibles</small>
+                        {% elseif hackathon.placesDispo == 1 %}
+                            <small>{{hackathon.placesDispo}} place disponible</small>
+                        {% else %}
+                            <small>Aucune place disponible</small>
                         {% endif %}
                     </div>
                 </div>
@@ -92,7 +92,7 @@
     }
     .card{
         background-color:#F7F7F7;
-        height:400px;
+        height:450px;
     }
     .cardhackathon{
         width:24%;
