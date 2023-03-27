@@ -7,7 +7,7 @@ document.getElementById("searchbar").addEventListener("keyup", function (e){
         if (!ville.includes(value)) {
             nbhackathon = nbhackathon - 1
             card[i].style.display = "none";
-            document.getElementById('titrepage').innerHTML="Liste des "+ nbhackathon +" Hackathons";
+            document.getElementById('titrepage').innerHTML="Liste des "+ nbhackathon + " Hackathons";
         } else {
             card[i].style.display = "";
             document.getElementById('titrepage').innerHTML="Liste des "+ nbhackathon +" Hackathons";
