@@ -60,12 +60,20 @@
     
         {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
         {% if hackathon.infoHackathon.id in tabFavoris %}
+<<<<<<< HEAD
             <a class="btn btn-primary js-lienFavoris" href="{{path('app_deleteFavori', {id : hackathon.infoHackathon.id}) }}">
+=======
+            <a class="btn btn-primary js-lienFavoris" href="{{path('app_SupprFavoris', {id : hackathon.infoHackathon.id} )}}" data-id='{{ hackathon.infoHackathon.id }}' data-type='suppr'>
+>>>>>>> a228344497836eb868cd22b621fd369dcdeca646
             ★ Supprimer des favoris
             </a>
         {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
         {% else %}
+<<<<<<< HEAD
             <a class="btn btn-primary js-lienFavoris" href="{{path('app_addFavori',{id : hackathon.infoHackathon.id})}}">
+=======
+            <a class="btn btn-primary js-lienFavoris" href="{{path('app_MettreFavoris', {id : hackathon.infoHackathon.id} )}}" data-id='{{ hackathon.infoHackathon.id }}' data-type='ajout'>
+>>>>>>> a228344497836eb868cd22b621fd369dcdeca646
             ☆ Ajouter aux favoris
             </a>
         {% endif %}

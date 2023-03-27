@@ -40,12 +40,12 @@
     
     {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
     {% if estFavoris == true %}
-        <a class="btn btn-primary" href="{{path('app_deleteFavori', {id : leHackaton.id}) }}">
+        <a class="btn btn-primary" href="{{path('app_SupprFavoris', {id : leHackaton.id} )}}" id="js-lienFavoris" data-id='{{ leHackaton.id }}' data-type='suppr'>
         ★ Supprimer des favoris
         </a>
     {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
     {% else %}
-        <a class="btn btn-primary" href="{{path('app_addFavori',{id : leHackaton.id})}}">
+        <a class="btn btn-primary" href="{{path('app_MettreFavoris', {id : leHackaton.id} )}}" id="js-lienFavoris" data-id='{{ leHackaton.id }}' data-type='ajout'>
         ☆ Ajouter aux favoris
         </a>
     {% endif %}
