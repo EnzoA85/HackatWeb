@@ -44,12 +44,12 @@
 
 
         {# Affiche le nombre de places si il est définit #}
-        {% if hackathon.infoHackathon.nbPlaces > 1 %}
+        {% if hackathon.placesDispo > 1 %}
             <p>{{hackathon.placesDispo}} places disponibles</p>
-        {% elseif hackathon.infoHackathon.nbPlaces == 1 %}
+        {% elseif hackathon.placesDispo == 1 %}
             <p>{{hackathon.placesDispo}} place disponible</p>
         {% else %}
-            <p>aucun place disponible</p>
+            <p>aucune place disponible</p>
         {% endif %}
 
 
