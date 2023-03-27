@@ -10,12 +10,10 @@
 <h1 class="titre">Liste des {{lesHackathons|length}} Hackathons</h1><br/>
 
 <center>
-
-<form method="POST" action="{{path('app_rechercheListeHackathon')}}">
-    <label style="color:black;text-shadow: 1px 1px 2px white;font-weight:bold;">Chercher par ville &nbsp&nbsp</label><input type="text" name='searchHackathon' id='searchHackathon' placeholder="Nom d'une ville"></input>
-    <input type='submit' value='Rechercher'></input>
-</form><br/>
+<label style="color:black;text-shadow: 1px 1px 2px white;font-weight:bold;">Chercher par ville &nbsp&nbsp</label>
+<input type="text" name='searchbar' id='searchbar' placeholder="Nom d'une ville"></input><br/><br/>
 </center>
+<script src="{{asset('js/searchbar.js')}}"></script>
 
 <div class="row">
 
@@ -26,7 +24,7 @@
 {# chaque ligne du table va faire une card Bootstrap #}
 {% for hackathon in lesHackathons %}
 <div class="col col-lg-3 col-sm-12 col-12 d-flex"> {# d-flex : les cards ont toutes la même taille #}
-  <div class="card" style="width:100%;margin-bottom : 10px;"> {# Définit les cards #}
+  <div class="card" style="width:100%;margin-bottom : 10px;" data-ville='{{ hackathon.infoHackathon.ville }}'> {# Définit les cards #}
 
 
     {# Affiche l'image si le hackathon en a une #}
@@ -60,20 +58,12 @@
     
         {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
         {% if hackathon.infoHackathon.id in tabFavoris %}
-<<<<<<< HEAD
-            <a class="btn btn-primary js-lienFavoris" href="{{path('app_deleteFavori', {id : hackathon.infoHackathon.id}) }}">
-=======
             <a class="btn btn-primary js-lienFavoris" href="{{path('app_SupprFavoris', {id : hackathon.infoHackathon.id} )}}" data-id='{{ hackathon.infoHackathon.id }}' data-type='suppr'>
->>>>>>> a228344497836eb868cd22b621fd369dcdeca646
             ★ Supprimer des favoris
             </a>
         {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
         {% else %}
-<<<<<<< HEAD
-            <a class="btn btn-primary js-lienFavoris" href="{{path('app_addFavori',{id : hackathon.infoHackathon.id})}}">
-=======
             <a class="btn btn-primary js-lienFavoris" href="{{path('app_MettreFavoris', {id : hackathon.infoHackathon.id} )}}" data-id='{{ hackathon.infoHackathon.id }}' data-type='ajout'>
->>>>>>> a228344497836eb868cd22b621fd369dcdeca646
             ☆ Ajouter aux favoris
             </a>
         {% endif %}
