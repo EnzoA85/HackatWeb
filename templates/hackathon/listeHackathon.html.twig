@@ -47,10 +47,16 @@
                         {% else %}
                             <p>aucun place disponible</p>
                         {% endif %}
-
-
                         {# Bouton vers les infos du hackathon #}
                         <a href="{{path('app_informationhackathon',{id : hackathon.infoHackathon.id})}}" class="btn btn-primary">Plus d'infos</a>
+                        {# Affiche le nombre de places si il est définit #}
+                        {% if hackathon.placesDispo > 1 %}
+                            <p>{{hackathon.placesDispo}} places disponibles</p>
+                        {% elseif hackathon.placesDispo == 1 %}
+                            <p>{{hackathon.placesDispo}} place disponible</p>
+                        {% else %}
+                            <p>aucune place disponible</p>
+                        {% endif %}
 
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     

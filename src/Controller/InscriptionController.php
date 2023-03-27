@@ -18,7 +18,7 @@ class InscriptionController extends AbstractController
         $hackathons = [];
         foreach ($doctrine->getRepository(Hackathon::class)->findAll() as $hackathon){
             $listeInscription = $doctrine->getRepository(Inscription::class)->findBy(["hackathon" => $hackathon, "utilisateur" => $this->getUser()]);
-            if (count($listeInscription) == 0 && $hackathon->getDateLimite() > date("YYYY-MM-DD")){
+            if (count($listeInscription) == 0 && $hackathon->getDateLimite() > date("YYYY-MM-DD") && $hackathon->getNbPlaces() - count($hackathon->getLesInscriptions()) > 0){
                 $hackathons[] = $hackathon;
             }
         }
