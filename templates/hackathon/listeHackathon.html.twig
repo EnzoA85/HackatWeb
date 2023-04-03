@@ -14,56 +14,53 @@
 
         <script src="{{asset('js/searchbar.js')}}"></script>
 
-        {# <div class="row"> #}
+        <h6 id="noHackathon" style="text-align:center;color:black;text-shadow: 1px 1px 2px white;font-size:50px;"></h6>
 
-            <h6 id="noHackathon" style="text-align:center;color:black;text-shadow: 1px 1px 2px white;font-size:50px;"></h6>
+        {# chaque ligne du table va faire une card Bootstrap #}
+        {% for hackathon in lesHackathons %}
+        <div class="cardhackathon"> {# d-flex : les cards ont toutes la même taille #}
+            <div class="card" id="card" style="width:100%;margin-bottom:10px;" data-ville='{{ hackathon.infoHackathon.ville }}'> {# Définit les cards #}
+                {# Affiche l'image si le hackathon en a une #}
+                {% if hackathon.infoHackathon.image != null %}
+                    <img class="card-img-top" src="{{hackathon.infoHackathon.image}}" style="height: 20%; object-fit: cover;">
+                {% endif %}
 
-            {# chaque ligne du table va faire une card Bootstrap #}
-            {% for hackathon in lesHackathons %}
-            <div class="cardhackathon"> {# d-flex : les cards ont toutes la même taille #}
-                <div class="card" id="card" style="width:100%;margin-bottom:10px;" data-ville='{{ hackathon.infoHackathon.ville }}'> {# Définit les cards #}
-                    {# Affiche l'image si le hackathon en a une #}
-                    {% if hackathon.infoHackathon.image != null %}
-                        <img class="card-img-top" src="{{hackathon.infoHackathon.image}}" style="height: 20%; object-fit: cover;">
-                    {% endif %}
-
-
-                    {# body contenu de la card #}
-                    <div class="card-body">
-                        <h5 class="card-title">{{hackathon.infoHackathon.theme}}</h5>
-                        <hr>
-                        <p>{{hackathon.infoHackathon.ville}}</p>
-                        <p>date début :{{hackathon.infoHackathon.dateDebut|date("d/m/Y")}}</p>
-                        <p>date fin : {{hackathon.infoHackathon.dateFin|date("d/m/Y")}}</p>
-
-
-                        {# Affiche le nombre de places si il est définit #}
-                        {% if hackathon.infoHackathon.nbPlaces > 1 %}
-                            <p>{{hackathon.placesDispo}} places disponibles</p>
-                        {% elseif hackathon.infoHackathon.nbPlaces == 1 %}
-                            <p>{{hackathon.placesDispo}} place disponible</p>
-                        {% else %}
-                            <p>aucun place disponible</p>
-                        {% endif %}
-                        {# Bouton vers les infos du hackathon #}
-                        <a href="{{path('app_informationhackathon',{id : hackathon.infoHackathon.id})}}" class="btn btn-primary">Plus d'infos</a>
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                {# body contenu de la card #}
+                <div class="card-body">
+                    <div style="display:flex">
+                        <div>
+                            <h5 class="card-title">{{hackathon.infoHackathon.theme}}</h5>
+                        </div>
+                        <div style="margin-left: auto;">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     
-                            {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
-                            {% if hackathon.infoHackathon.id in tabFavoris %}
-                                <a class="btn btn-primary js-lienFavoris" href="{{path('app_SupprFavoris', {id : hackathon.infoHackathon.id} )}}" data-id='{{ hackathon.infoHackathon.id }}' data-type='suppr'>
-                                ★ Supprimer des favoris
-                                </a>
-                            {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
-                            {% else %}
-                                <a class="btn btn-primary js-lienFavoris" href="{{path('app_MettreFavoris', {id : hackathon.infoHackathon.id} )}}" data-id='{{ hackathon.infoHackathon.id }}' data-type='ajout'>
-                                ☆ Ajouter aux favoris
-                                </a>
-                            {% endif %}
+                                {# Si il n'est pas déjà en favoris, renvoyer le lien pour défavoriser #}
+                                {% if hackathon.infoHackathon.id in tabFavoris %}
+                                    <a style="font-size:30px;" class="btn btn-primary js-lienFavoris" href="{{path('app_SupprFavoris', {id : hackathon.infoHackathon.id} )}}" data-id='{{ hackathon.infoHackathon.id }}' data-type='suppr'>
+                                       ★
+                                    </a>
+                                {# Si il est déjà en favoris, renvoyer le lien pour défavoriser #}
+                                {% else %}
+                                    <a style="font-size:30px;" class="btn btn-primary js-lienFavoris" href="{{path('app_MettreFavoris', {id : hackathon.infoHackathon.id} )}}" data-id='{{ hackathon.infoHackathon.id }}' data-type='ajout'>
+                                        ☆
+                                    </a>
+                                {% endif %}
 
-                        {% endif %}
-                        {# Affiche le nombre de places si il est définit #}
-                        <br/>
+                            {% endif %}
+                        </div>
+                    </div>
+                        
+                    <hr>
+
+                    <p>{{hackathon.infoHackathon.ville}}</p>
+                    <p>date début :{{hackathon.infoHackathon.dateDebut|date("d/m/Y")}}</p>
+                    <p>date fin : {{hackathon.infoHackathon.dateFin|date("d/m/Y")}}</p>
+
+                    {# Bouton vers les infos du hackathon #}
+                    <a href="{{path('app_informationhackathon',{id : hackathon.infoHackathon.id})}}" class="btn btn-primary" style="position: absolute;bottom:0;margin-bottom:20px;">Plus d'infos</a>
+                    {# Affiche le nombre de places si il est définit #}
+                    <br/>
+                    <div style="position: absolute;bottom:0;">
                         {% if hackathon.placesDispo > 1 %}
                             <small>{{hackathon.placesDispo}} places disponibles</small>
                         {% elseif hackathon.placesDispo == 1 %}
@@ -74,8 +71,8 @@
                     </div>
                 </div>
             </div>
-            {% endfor %}
-        {# </div> #}
+        </div>
+        {% endfor %}
     </div>
 </div>
 <script src="{{asset('js/favoris.js')}}"></script>
@@ -96,6 +93,16 @@
         width:24%;
         float:left;
         margin-right:1%;
+    }
+    .js-lienFavoris{
+        background:none;
+        border:none;
+        color:black;
+    }
+    .js-lienFavoris:hover{
+        background:none;
+        border:none;
+        color:black;
     }
 </style>
 {% endblock %}

@@ -3,8 +3,10 @@
 ///////////////////////////
 
 var lesLiens = document.getElementsByClassName("btn btn-primary js-lienFavoris");
+
 for (i = 0; i < lesLiens.length; i++)
 {
+
 // Ajout d'un favoris
 
 lesLiens[i].addEventListener('click', function (event) {
@@ -37,7 +39,7 @@ lesLiens[i].addEventListener('click', function (event) {
                 //1) On récupere l'élément balise
                 // baliseA = document.getElementById('js-lienFavoris');
                 //2) On change le texte affiché
-                baliseA.textContent = '★ Supprimer des favoris';
+                baliseA.textContent = '★';
                 //3) On change le lien pour qu'il redirige sur la branche API de suppression avec l'id du Hackathon
                 baliseA.setAttribute("href",'/supprFavoriHackathon/'+baliseA.getAttribute("data-id"));
                 //4) On change le type pour que le boutton soit reconnu comme le boutton de suppression
@@ -70,7 +72,7 @@ lesLiens[i].addEventListener('click', function (event) {
                 //1) On récupere l'élément balise
                 //balise = document.getElementById('js-lienFavoris');
                 //2) On change le texte affiché
-                baliseA.textContent = '☆ Ajouter aux favoris';
+                baliseA.textContent = '☆';
                 //3) On change le lien pour qu'il redirige sur la branche API de suppression avec l'id du Hackathon
                 baliseA.setAttribute("href",'/favoriHackathon/'+baliseA.getAttribute("data-id"));
                 //4) On change le type pour que le boutton soit reconnu comme le boutton de suppression
