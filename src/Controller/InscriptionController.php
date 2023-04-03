@@ -7,22 +7,31 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hackathon;
 use App\Entity\Inscription;
-use App\Entity\Utilisateur;
+use App\Form\InscriptionHackathonType;
+use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 
 class InscriptionController extends AbstractController
 {
-    #[Route('/inscription', name: 'app_inscription')]
-    public function index( ManagerRegistry $doctrine): Response
+    #[Route('/inscription', name:'app_inscription')]
+    public function index(ManagerRegistry $doctrine,Request $request): Response
     {
-        $hackathons = [];
-        foreach ($doctrine->getRepository(Hackathon::class)->findAll() as $hackathon){
-            $listeInscription = $doctrine->getRepository(Inscription::class)->findBy(["hackathon" => $hackathon, "utilisateur" => $this->getUser()]);
-            if (count($listeInscription) == 0 && $hackathon->getDateLimite() > date("YYYY-MM-DD") && $hackathon->getNbPlaces() - count($hackathon->getLesInscriptions()) > 0){
-                $hackathons[] = $hackathon;
-            }
+        $inscription = new Inscription;
+        $entityManager = $doctrine->getManager();
+        $form=$this->createForm(InscriptionHackathonType::class,$inscription);        
+        $form->handleRequest($request);
+        $user = $this->getUser();
+        $inscription->setUtilisateur($user);
+        $inscription->setDateInscription(new DateTime('now'));
+        if($form->isSubmitted() && $form->isValid()){
+            $inscription->setUtilisateur($user);
+            $inscription->setDateInscription(new DateTime('now'));
+            $entityManager->persist($inscription);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_home');
         }
-        return $this->render('inscription/index.html.twig', ["les_hackathons" => $hackathons]);
+        return $this->render('inscription/index.html.twig',['form'=>$form->createView()]);
     }
 
     #[Route('/ValidationInscription', name: 'app_ValiderInscription')]
