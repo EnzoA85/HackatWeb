@@ -24,7 +24,7 @@ class InscriptionHackathonType extends AbstractType
                 'choice_label'=>'theme',//libelle est la propriété de l'entité Genre que l'on veut afficher
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
-                        ->orderBy('u.theme', 'ASC');
+                        ->where('u.theme', 'ASC');
                 },
             ))
         ;

@@ -5,17 +5,6 @@
 {% block body %}
 <h1>Inscription à un Hackathon</h1>
 <div class="img-thumbnail" style="margin-left:500px;margin-right:500px;background-color:#EAEAEA;">
-{# <form class="Inscription" action="{{path('app_ValiderInscription') }}" method="post"><br/>
-    <label for="hackathon">Hackathon :</label>
-    <select name="hackathon" id="hackathon">
-    {% for hackathon in les_hackathons %}
-        <option value="{{hackathon.id}}">{{hackathon.theme}}</option>
-    {% endfor %}
-    </select><br/><br/>
-    <label for="texteLibre">Compétence/Outils :</label><br/><br/>
-    <textarea type="text" id="texteLibre" name="texteLibre" rows="3" cols="80"></textarea><br/><br/>
-    <input type="submit" value="S'inscrire"><br/><br/>
-</form> #}
 {{form_start(form)}}
 {{form_row(form.hackathon)}}
 {{form_row(form.texteLibre)}}
