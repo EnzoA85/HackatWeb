@@ -70,8 +70,6 @@
 {# Date limite d'inscription (si présente) #}
 {% if leHackaton.dateLimite != null %} <p>Date limite d'inscription: {{ leHackaton.dateLimite|date("d/m/y") }} </p> {% endif %}
 
-{# Bouton favoris seulement si connecté #}
-
 </div>
 
  <script src="{{asset('js/favoris.js')}}"></script>

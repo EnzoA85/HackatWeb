@@ -22,8 +22,6 @@ class InscriptionController extends AbstractController
         $form=$this->createForm(InscriptionHackathonType::class,$inscription);        
         $form->handleRequest($request);
         $user = $this->getUser();
-        $inscription->setUtilisateur($user);
-        $inscription->setDateInscription(new DateTime('now'));
         if($form->isSubmitted() && $form->isValid()){
             $inscription->setUtilisateur($user);
             $inscription->setDateInscription(new DateTime('now'));

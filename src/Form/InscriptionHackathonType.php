@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Hackathon;
 use App\Entity\Inscription;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
