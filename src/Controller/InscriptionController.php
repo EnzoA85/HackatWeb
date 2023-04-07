@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Hackathon;
 use App\Entity\Inscription;
 use App\Form\InscriptionHackathonType;
+use App\Repository\InscriptionRepository;
 use DateTime;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,13 +16,15 @@ use Symfony\Component\HttpFoundation\Request;
 class InscriptionController extends AbstractController
 {
     #[Route('/inscription', name:'app_inscription')]
-    public function index(ManagerRegistry $doctrine,Request $request): Response
+    public function index(ManagerRegistry $doctrine,Request $request, InscriptionRepository $repository): Response
     {
         $inscription = new Inscription;
-        $entityManager = $doctrine->getManager();
-        $form=$this->createForm(InscriptionHackathonType::class,$inscription);        
-        $form->handleRequest($request);
         $user = $this->getUser();
+        $entityManager = $doctrine->getManager();
+        $idUser= $user->getid();
+        $lesHackathon =  $repository->getHackathonNotInscri($idUser);
+        $form=$this->createForm(InscriptionHackathonType::class,$inscription,['hackathon' => $lesHackathon]);        
+        $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $inscription->setUtilisateur($user);
             $inscription->setDateInscription(new DateTime('now'));

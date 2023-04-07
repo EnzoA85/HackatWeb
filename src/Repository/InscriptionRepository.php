@@ -39,6 +39,25 @@ class InscriptionRepository extends ServiceEntityRepository
         }
     }
 
+    //SELECT * FROM hackathon ha WHERE ha.id NOT IN (SELECT idHackathon FROM inscription WHERE inscription.idUtilisateur = 73);
+
+    public function getHackathonNotInscri(int $userId)
+    {
+        $qb = $this->createQueryBuilder('ha');
+        $qb->where(
+            $qb->expr()->notIn(
+                'ha.id',
+                $this->_em->createQueryBuilder()
+                    ->select('i.idHackathon')
+                    ->from('inscription', 'i')
+                    ->where('i.idUtilisateur = :userId')
+                    ->getDQL()
+            )
+        )->setParameter('userId', $userId);
+
+        return $qb->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Inscription[] Returns an array of Inscription objects
 //     */

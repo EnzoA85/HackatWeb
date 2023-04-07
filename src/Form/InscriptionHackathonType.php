@@ -6,6 +6,7 @@ use App\Entity\Hackathon;
 use App\Entity\Inscription;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -16,11 +17,13 @@ class InscriptionHackathonType extends AbstractType
     {
         $builder
             ->add('texteLibre', TextType::class)
+            ->add('utilisateur', HiddenType::class)
             ->add('hackathon',
             EntityType::class,
             array(
                 'class'=>Hackathon::class,
                 'choice_label'=>'theme',//libelle est la propriété de l'entité Genre que l'on veut afficher
+                'choices' => $options['hackathon'],
             ))
         ;
     }
