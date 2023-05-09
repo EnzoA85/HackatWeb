@@ -64,6 +64,9 @@ class HackathonRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+// SELECT * FROM hackathon ha WHERE ha.id NOT IN (SELECT idHackathon FROM inscription WHERE inscription.idUtilisateur = 82)
+
+
 //    /**
 //     * @return Hackathon[] Returns an array of Hackathon objects
 //     */
