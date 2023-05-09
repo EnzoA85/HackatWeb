@@ -9,7 +9,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class InscriptionHackathonType extends AbstractType
 {
@@ -21,7 +20,7 @@ class InscriptionHackathonType extends AbstractType
             EntityType::class,
             array(
                 'class'=>Hackathon::class,
-                'choice_label'=>'theme',//libelle est la propriété de l'entité Genre que l'on veut afficher
+                'choice_label'=>'theme',//libelle est la propriété de l'entité Hackathon que l'on veut afficher
             ))
         ;
     }

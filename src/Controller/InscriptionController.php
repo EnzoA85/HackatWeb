@@ -17,19 +17,24 @@ class InscriptionController extends AbstractController
     #[Route('/inscription', name:'app_inscription')]
     public function index(ManagerRegistry $doctrine,Request $request): Response
     {
-        $inscription = new Inscription;
-        $entityManager = $doctrine->getManager();
-        $form=$this->createForm(InscriptionHackathonType::class,$inscription);        
-        $form->handleRequest($request);
-        $user = $this->getUser();
-        if($form->isSubmitted() && $form->isValid()){
-            $inscription->setUtilisateur($user);
-            $inscription->setDateInscription(new DateTime('now'));
-            $entityManager->persist($inscription);
-            $entityManager->flush();
-            return $this->redirectToRoute('app_home');
+        if ($this->getUser()==null)
+        {
+            return $this->render('home/index.html.twig', ['controller_name' => 'HomeController',]);
+        } else {
+            $inscription = new Inscription;
+            $entityManager = $doctrine->getManager();
+            $form=$this->createForm(InscriptionHackathonType::class,$inscription);        
+            $form->handleRequest($request);
+            $user = $this->getUser();
+            if($form->isSubmitted() && $form->isValid()){
+                $inscription->setUtilisateur($user);
+                $inscription->setDateInscription(new DateTime('now'));
+                $entityManager->persist($inscription);
+                $entityManager->flush();
+                return $this->redirectToRoute('app_home');
+            }
+            return $this->render('inscription/index.html.twig',['form'=>$form->createView()]);
         }
-        return $this->render('inscription/index.html.twig',['form'=>$form->createView()]);
     }
 
     #[Route('/ValidationInscription', name: 'app_ValiderInscription')]
